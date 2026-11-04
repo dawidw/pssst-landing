@@ -2,7 +2,7 @@
 
 > Pssst is a tiny native macOS app that lives next to the MacBook notch and shows which of your Grok Bot agents need you, with a short message preview so you can tell if it matters before you switch apps. Tagline: your bot wants something.
 
-Pssst is an independent app built by Dawid Woźniak and Sature. It is not affiliated with or endorsed by Grok Bot. Status: coming soon for Mac.
+Pssst is an independent app built by Dawid Woźniak and Sature. It is not affiliated with or endorsed by Grok Bot. Price: $7 one-time purchase for Mac, no subscription.
 
 ## Product
 
