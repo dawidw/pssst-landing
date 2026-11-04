@@ -50,6 +50,13 @@
   nav a.buy:hover { opacity:0.8; }
   nav .buy.off { cursor:default; user-select:none; }
   .diy { margin-top:12px; font-size:14px; color:var(--muted); }
+  .diy b { color:#fff; font-weight:500; }
+  .diy .copy { color:var(--muted); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px; cursor:pointer; }
+  .diy .copy:hover { color:var(--fg); }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .prompt { margin:12px auto 0; max-width:640px; text-align:left; font-size:13px; color:var(--muted); }
+  .prompt summary { cursor:pointer; }
+  .prompt pre { margin-top:8px; white-space:pre-wrap; font:inherit; }
   .cta svg { width:16px; height:16px; fill:#fff; }
   .note { margin-top:14px; font-size:13px; color:var(--muted); }
 
@@ -202,7 +209,52 @@
     <p class="tagline">your bot wants something</p>
     <p class="lead">A tiny bot pops out next to your notch <b>when one of your Grok Bot agents is waiting for you.</b> Everyone else stays asleep.</p>
     <span class="cta off" role="link" aria-disabled="true" id="download">Buy for $7</span>
-    <p class="diy">or spend ~16% of weekly Super plan usage and an afternoon building it yourself</p>
+    <p class="diy">or spend <b>~16% of weekly Super plan usage</b> and <b>an afternoon</b> building it yourself, starting with <a href="#build-prompt" class="copy" id="copyPrompt" role="button" aria-label="Copy the build prompt to the clipboard">this prompt</a><span class="sr-only" id="copyStatus" aria-live="polite"></span></p>
+    <pre class="sr-only" id="buildPromptText">Build me a small native macOS app from scratch. Work directly on my Mac, show me progress after each step and iterate with me until I&#x27;m happy.
+1. Stack: Swift and SwiftUI as a Swift Package (macOS 14 or later), no third party dependencies, plus a build script that produces a runnable .app bundle.
+2. The app lives in the MacBook notch: a black, borderless, always on top panel that blends into the notch. On Macs without a notch, show a small black pill centered at the top of the screen instead.
+3. It shows which of my Grok Bot agents are waiting for me. Read their state from the Grok Bot desktop app&#x27;s local agent roster on this Mac. Find it first, tell me exactly what you plan to read and wait for my OK.
+4. Strictly read only: never read secrets, cookies, tokens or message contents, and never write, move or lock any Grok Bot file. Watch the roster with a light file watcher or timer.
+5. Layout: my main bot sleeps on the left side of the notch. Every agent that is waiting for me appears on the right as a small bot with a blue dot.
+6. Hovering the notch smoothly expands it into a panel with a preview of each waiting agent: name, a one line summary of what it needs (from roster status fields only) and how long it has been waiting.
+7. Clicking an agent opens its chat in the Grok Bot app (use a deep link if the app has one, otherwise bring the app to the front).
+8. A global keyboard shortcut toggles the panel, Esc closes it.
+9. A menu bar item with a short setup window: launch at login, the shortcut, which agents to show, quit.
+10. Keep the logic (roster parsing, waiting detection, sorting) separate from the UI and cover it with unit tests (swift test) that use fixture files, never my real data.
+11. When it works, build the .app with the script, launch it, take screenshots of the notch closed and expanded, and show them to me. Make sure no message contents are visible in the screenshots.</pre>
+    <noscript><details class="prompt" id="build-prompt" open><summary>The prompt</summary><pre>Build me a small native macOS app from scratch. Work directly on my Mac, show me progress after each step and iterate with me until I&#x27;m happy.
+1. Stack: Swift and SwiftUI as a Swift Package (macOS 14 or later), no third party dependencies, plus a build script that produces a runnable .app bundle.
+2. The app lives in the MacBook notch: a black, borderless, always on top panel that blends into the notch. On Macs without a notch, show a small black pill centered at the top of the screen instead.
+3. It shows which of my Grok Bot agents are waiting for me. Read their state from the Grok Bot desktop app&#x27;s local agent roster on this Mac. Find it first, tell me exactly what you plan to read and wait for my OK.
+4. Strictly read only: never read secrets, cookies, tokens or message contents, and never write, move or lock any Grok Bot file. Watch the roster with a light file watcher or timer.
+5. Layout: my main bot sleeps on the left side of the notch. Every agent that is waiting for me appears on the right as a small bot with a blue dot.
+6. Hovering the notch smoothly expands it into a panel with a preview of each waiting agent: name, a one line summary of what it needs (from roster status fields only) and how long it has been waiting.
+7. Clicking an agent opens its chat in the Grok Bot app (use a deep link if the app has one, otherwise bring the app to the front).
+8. A global keyboard shortcut toggles the panel, Esc closes it.
+9. A menu bar item with a short setup window: launch at login, the shortcut, which agents to show, quit.
+10. Keep the logic (roster parsing, waiting detection, sorting) separate from the UI and cover it with unit tests (swift test) that use fixture files, never my real data.
+11. When it works, build the .app with the script, launch it, take screenshots of the notch closed and expanded, and show them to me. Make sure no message contents are visible in the screenshots.</pre></details></noscript>
+    <script>
+(() => {
+  const a = document.getElementById('copyPrompt'), st = document.getElementById('copyStatus');
+  const text = document.getElementById('buildPromptText').textContent;
+  const fallback = () => { const t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly', '');
+    t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (e) {} t.remove(); return ok; };
+  let timer;
+  a.addEventListener('click', async (e) => {
+    e.preventDefault();
+    let ok = false;
+    try { if (navigator.clipboard && window.isSecureContext) {
+      // bez odpowiedzi w 1 s (np. zablokowane uprawnienie) przechodzimy do fallbacku
+      ok = await Promise.race([navigator.clipboard.writeText(text).then(() => true), new Promise(r => setTimeout(() => r(false), 1000))]);
+    } } catch (e) {}
+    if (!ok) ok = fallback();
+    a.textContent = ok ? 'copied!' : 'copy failed'; st.textContent = ok ? 'Prompt copied to the clipboard' : 'Copy failed';
+    clearTimeout(timer); timer = setTimeout(() => { a.textContent = 'this prompt'; st.textContent = ''; }, 2000);
+  });
+})();
+</script>
     <p class="note">For macOS 14 or later. Unofficial companion app, works with the Grok Bot desktop app.</p>
 
     <div class="demo">
