@@ -55,6 +55,25 @@
   @keyframes zz { 0% { opacity:0; transform:translate(0,4px); } 25% { opacity:0.9; } 100% { opacity:0; transform:translate(5px,-8px); } }
   @media (prefers-reduced-motion: reduce) { .bot .body, .bot .z { animation:none !important; } }
 
+  .bwin { position:absolute; z-index:4; top:calc(37px + 92px); left:50%; width:min(340px, 76%); max-height:calc(100% - 150px); display:flex; flex-direction:column; background:#141418; border:1px solid rgba(255,255,255,0.09); border-radius:16px; box-shadow:0 24px 60px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.4); overflow:hidden; color:#fff; text-align:left; font:13px/1.35 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; opacity:0; transform:translateX(-50%) scale(.92); transform-origin:50% 0; transition:opacity .25s ease, transform .25s cubic-bezier(.3,1.2,.5,1); }
+  .bwin.on { opacity:1; transform:translateX(-50%) scale(1); }
+  .bw-h { display:flex; align-items:center; gap:10px; padding:12px 12px 10px 14px; border-bottom:1px solid rgba(255,255,255,0.07); }
+  .bw-bot { line-height:0; } .bw-bot .bot { --s:22px !important; } .bw-bot .bot .dot { display:none; }
+  .bw-n { flex:1; font-weight:600; font-size:14px; }
+  .bw-x { width:24px; height:24px; border:0; border-radius:50%; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.7); font:16px/24px -apple-system, sans-serif; cursor:pointer; padding:0; }
+  .bw-x:hover { background:rgba(255,255,255,0.16); color:#fff; }
+  .bw-b { flex:1; min-height:0; overflow:hidden; display:flex; flex-direction:column; gap:10px; padding:14px; }
+  .bw-m { border-radius:14px; min-height:28px; flex:none; }
+  .bw-b .bw-m.sk:nth-child(n+4) { flex-shrink:1; }
+  .bw-m.in { align-self:flex-start; border-bottom-left-radius:5px; }
+  .bw-m.out { align-self:flex-end; border-bottom-right-radius:5px; }
+  .bw-m.first { max-width:82%; padding:8px 12px; background:#24242b; color:rgba(255,255,255,0.88); }
+  .bw-m.first:empty { display:none; }
+  .bw-f { display:flex; gap:8px; align-items:center; padding:10px 12px 12px; border-top:1px solid rgba(255,255,255,0.07); }
+  .bw-i { flex:1; height:32px; border-radius:16px; } .bw-s { width:32px; height:32px; border-radius:50%; }
+  .sk { background:linear-gradient(90deg, #22222a 0%, #2e2e37 50%, #22222a 100%); background-size:200% 100%; animation:bwsh 1.4s linear infinite; }
+  @keyframes bwsh { from { background-position:100% 0; } to { background-position:-100% 0; } }
+  @media (prefers-reduced-motion: reduce) { .bwin { transition:opacity .01s; transform:translateX(-50%); } .bwin.on { transform:translateX(-50%); } .sk { animation:none; } }
   /* interaktywny pulpit Maca (makieta marketingowa) */
   .demo { margin:72px auto 0; max-width:1000px; }
   .desk { position:relative; aspect-ratio:16/9; border-radius:26px; background:#0b1433; isolation:isolate; user-select:none; -webkit-user-select:none; }
