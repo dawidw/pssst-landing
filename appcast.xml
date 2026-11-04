@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.4</title>
+      <pubDate>Wed, 04 Nov 2026 23:07:00 GMT</pubDate>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>0.2.4</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Update dialogs are now always in English</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.4/Pssst-0.2.4.dmg" length="2654083" type="application/octet-stream" sparkle:edSignature="7KvohP4YfyXouQyVOLN1onGCB21JY7Psdx8wItJ4Drgwl0ovp3Q01AuLo5d2fRtlhZZxb70K+Evxv2ugEHOFDA=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.3</title>
       <pubDate>Wed, 04 Nov 2026 22:20:52 GMT</pubDate>
       <sparkle:version>5</sparkle:version>
