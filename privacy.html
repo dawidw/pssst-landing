@@ -25,8 +25,8 @@
   .cta:hover { background:#2b95ff; }
   /* jeszcze bez DMG: przycisk wygląda jak CTA, ale nic nie robi */
   .cta.off, .cta.off:hover { background:var(--accent); cursor:default; user-select:none; }
-  nav .buy { color:var(--muted); font-size:14px; }
-  nav a.buy:hover { color:#fff; }
+  nav .buy { color:#fff; font-size:14px; }
+  nav a.buy:hover { opacity:0.8; }
   nav .buy.off { cursor:default; user-select:none; }
   .diy { margin-top:12px; font-size:14px; color:var(--muted); }
   .cta svg { width:16px; height:16px; fill:#fff; }
@@ -187,10 +187,10 @@
 <main class="legal wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective: 4 November 2026</p>
+  <p class="updated">Effective: 4 November 2026. Last updated: 4 November 2026.</p>
 
   <h2>Short version</h2>
-  <p>Pssst runs entirely on your Mac. Its only network request is a daily check for app updates. It has no analytics, no tracking and no accounts. We do not collect, receive or store any of your data.</p>
+  <p>Pssst runs entirely on your Mac. Its only network request is a daily check for app updates. It has no analytics, no tracking and no accounts. The app does not collect, receive or store any of your data. When you buy Pssst, payment is handled by Creem, not by the app (see Purchases below).</p>
 
   <h2>Who we are</h2>
   <p>Pssst is made and run by Dawid Woźniak, a private individual, who is the controller for anything covered by this policy. It is an independent project, not affiliated with or endorsed by Grok Bot. Contact: <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>.</p>
@@ -213,6 +213,9 @@
   <h2>Update checks</h2>
   <p>Once a day, and when you choose Check for Updates, the app downloads a small public file (<code>appcast.xml</code>) from this website to see if a newer version exists. If you install an update, the new version is downloaded from GitHub. These requests contain only what any download does: your IP address and the app's name and version in the user agent. No information about your bots, messages or Mac is sent. The hosts (GitHub Pages and GitHub Releases, run by GitHub, Inc.) may log these requests under their own policy; we do not receive or use those logs.</p>
 
+  <h2>Purchases</h2>
+  <p>Pssst is sold through Creem, which acts as merchant of record. Creem collects and processes your payment and billing details (such as card details, name, email address and country) under its own <a href="https://www.creem.io/privacy">privacy policy</a>. The app never sees your payment details. As the seller we receive from Creem only the order details it shares with sellers, such as your email address, country and what you bought, and we use them only to deliver your purchase, handle refunds and answer support requests.</p>
+
   <h2>What happens when you click a bot</h2>
   <p>The app asks macOS to open that agent's chat in the Grok Bot app using a <code>grokbot://</code> link. Grok Bot's own privacy terms apply to what happens there.</p>
 
@@ -220,7 +223,7 @@
   <p>This site is static. It sets no cookies, uses no local storage and loads no analytics or third party scripts. It is hosted on GitHub Pages by GitHub, Inc., which may log visitors' IP addresses and keep them under its own policy, see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>. We do not receive or use those logs.</p>
 
   <h2>Your rights</h2>
-  <p>Because we do not process your personal data, there is nothing for us to access, correct or delete. If you have questions, write to <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>. You can also complain to your data protection authority; in Poland that is the President of the Personal Data Protection Office (UODO).</p>
+  <p>The app does not process your personal data. If you bought Pssst, you can ask us to access, correct or delete the order details we received from Creem by writing to <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>; Creem handles requests about the payment data it holds. If you have questions, write to <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>. You can also complain to your data protection authority; in Poland that is the President of the Personal Data Protection Office (UODO).</p>
 
   <h2>Changes</h2>
   <p>If this policy changes, the new version will be posted on this page with a new effective date.</p>
