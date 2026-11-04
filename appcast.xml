@@ -5,5 +5,14 @@
     <link>https://pssst.dawidw.pl/</link>
     <description>Pssst updates</description>
     <language>en</language>
+    <item>
+      <title>Pssst 0.2.3</title>
+      <pubDate>Wed, 04 Nov 2026 22:20:52 GMT</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>0.2.3</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Signed with Developer ID and notarized by Apple; new app icon</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.3/Pssst-0.2.3.dmg" length="2725166" type="application/octet-stream" sparkle:edSignature="BPcOK2ToXoGRomgKHcNSIrm3ndJfEfniibfobxzsXe36oEhb64XUH0hhnVV8lnIrrmnv7grfGS9zbIOR6mFDDQ=="/>
+    </item>
   </channel>
 </rss>
