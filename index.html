@@ -118,6 +118,9 @@
   .cap .l1.q { color:rgba(255,255,255,0.45); }
   .bot.awake .ec, .bot.asleep .eo, .bot.awake .z, .bot.asleep .dot { display:none; }
   .psst { margin-top:16px; text-align:center; font-size:13px; color:var(--muted); }
+  .credit { margin-top:2px; text-align:center; font-size:13px; color:var(--muted); }
+  .credit a { color:var(--fg); text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px; }
+  .credit a:hover { color:#fff; }
   @media (max-width: 760px) {
     .demo { margin-top:48px; }
     .desk { aspect-ratio:auto; height:300px; border-radius:20px; }
@@ -209,7 +212,7 @@
     <p class="tagline">your bot wants something</p>
     <p class="lead">A tiny bot pops out next to your notch <b>when one of your Grok Bot agents is waiting for you.</b> Everyone else stays asleep.</p>
     <span class="cta off" role="link" aria-disabled="true" id="download">Buy for $7</span>
-    <p class="diy">or spend <b>~16% of weekly Super plan usage</b> and <b>an afternoon</b><br>building it yourself, starting with <a href="#build-prompt" class="copy" id="copyPrompt" role="button" aria-label="Copy the build prompt to the clipboard">this prompt</a><span class="sr-only" id="copyStatus" aria-live="polite"></span></p>
+    <p class="diy">or<br>spend <b>~16% of weekly Super plan usage</b> and <b>an afternoon</b><br>building it yourself, starting with <a href="#build-prompt" class="copy" id="copyPrompt" role="button" aria-label="Copy the build prompt to the clipboard">this prompt</a><span class="sr-only" id="copyStatus" aria-live="polite"></span></p>
     <pre class="sr-only" id="buildPromptText">Build me a small native macOS app from scratch. Work directly on my Mac, show me progress after each step and iterate with me until I&#x27;m happy.
 1. Stack: Swift and SwiftUI as a Swift Package (macOS 14 or later), no third party dependencies, plus a build script that produces a runnable .app bundle.
 2. The app lives in the MacBook notch: a black, borderless, always on top panel that blends into the notch. On Macs without a notch, show a small black pill centered at the top of the screen instead.
@@ -269,6 +272,7 @@
         </div>
       </div>
       <p class="psst" id="psst">Hover the notch, it's interactive.</p>
+      <p class="credit">Wallpaper from <a href="https://studyofspace.gallery" target="_blank" rel="noopener">Study of Space</a> app.</p>
     </div>
   </section>
 
