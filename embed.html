@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pssst: your bot wants something | Grok Bot notch app for Mac</title>
+<meta name="description" content="Pssst is a tiny macOS notch app that shows which of your Grok Bot agents need you, with a quick message preview so you know if it matters.">
+<meta name="keywords" content="mac notch app, macOS notch, notch utility, Grok Bot, AI agent notifications, bot notifications mac, menu bar app, AI assistant mac, AI agents, MacBook notch, Pssst">
+<meta name="author" content="Dawid Woźniak">
+<link rel="canonical" href="https://pssst.dawidw.pl/">
+<meta name="theme-color" content="#0A0A0C">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pssst">
+<meta property="og:title" content="Pssst: your bot wants something | Grok Bot notch app for Mac">
+<meta property="og:description" content="Pssst is a tiny macOS notch app that shows which of your Grok Bot agents need you, with a quick message preview so you know if it matters.">
+<meta property="og:url" content="https://pssst.dawidw.pl/">
+<meta property="og:image" content="https://pssst.dawidw.pl/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pssst for Mac: a bot with a blue dot next to the MacBook notch. Your bot wants something.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Dawidwu">
+<meta name="twitter:title" content="Pssst: your bot wants something | Grok Bot notch app for Mac">
+<meta name="twitter:description" content="Pssst is a tiny macOS notch app that shows which of your Grok Bot agents need you, with a quick message preview so you know if it matters.">
+<meta name="twitter:image" content="https://pssst.dawidw.pl/og-image.png">
+<meta name="twitter:image:alt" content="Pssst for Mac: a bot with a blue dot next to the MacBook notch. Your bot wants something.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Pssst", "description": "Pssst is a tiny macOS notch app that shows which of your Grok Bot agents need you, with a quick message preview so you know if it matters.", "url": "https://pssst.dawidw.pl/", "image": "https://pssst.dawidw.pl/og-image.png", "operatingSystem": "macOS", "applicationCategory": "UtilitiesApplication", "author": {"@type": "Person", "name": "Dawid Woźniak", "url": "https://dawidw.pl"}}</script>
+<style>
+  :root { --bg:#000; --fg:#f5f5f7; --muted:#8e8e93; --line:#1c1c1e; --card:#0b0b0c; --accent:#0A84FF; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { background:var(--bg); color:var(--fg); font:16px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 28px; }
+  nav { display:flex; justify-content:space-between; align-items:center; height:72px; }
+  nav .brand { font-weight:600; letter-spacing:-0.01em; }
+  nav .link { color:var(--muted); font-size:14px; }
+  nav .link:hover { color:var(--fg); }
+
+  .hero { text-align:center; padding-top:96px; padding-bottom:64px; }
+  .hero h1 { font-size:clamp(44px, 8vw, 88px); line-height:1; letter-spacing:-0.04em; font-weight:700; }
+  .hero .tagline { margin-top:10px; font-size:clamp(20px, 2.6vw, 26px); font-weight:600; letter-spacing:-0.02em; color:var(--accent); }
+  .hero p.lead { margin:24px auto 0; max-width:560px; font-size:clamp(18px, 2.2vw, 21px); color:var(--muted); }
+  .hero p.lead b { color:var(--fg); font-weight:500; }
+  .cta { display:inline-flex; align-items:center; gap:10px; margin-top:40px; padding:14px 26px; border-radius:999px; background:var(--accent); color:#fff; font-weight:600; font-size:16px; }
+  .cta:hover { background:#2b95ff; }
+  /* jeszcze bez DMG: przycisk wygląda jak CTA, ale nic nie robi */
+  .cta.soon, .cta.soon:hover { background:var(--accent); cursor:default; user-select:none; }
+  nav .soon { color:var(--muted); font-size:14px; }
+  .cta svg { width:16px; height:16px; fill:#fff; }
+  .note { margin-top:14px; font-size:13px; color:var(--muted); }
+
+
+  /* bociki */
+  .bot { position:relative; display:inline-block; width:var(--s); height:var(--s); flex:none; }
+  .bot svg { width:100%; height:100%; display:block; overflow:visible; }
+  .bot .body { transform-origin:50% 100%; transform-box:fill-box; }
+  .bot.awake .body { animation:jelly 2.6s ease-in-out infinite; }
+  .bot.asleep .body { animation:breathe 2.2s ease-in-out infinite alternate; }
+  .bot .dot { position:absolute; top:-4px; left:-6px; width:calc(var(--s) * 0.34); height:calc(var(--s) * 0.34); min-width:9px; min-height:9px; border-radius:50%; background:var(--accent); border:2px solid #000; }
+  .bot .z { position:absolute; top:-8px; right:-9px; font:700 calc(var(--s) * 0.42)/1 ui-rounded, -apple-system, sans-serif; font-style:normal; color:#bdbdc2; animation:zz 2.4s ease-out infinite; }
+  @keyframes jelly { 0%,100% { transform:scale(1,1); } 30% { transform:scale(1.06,0.94) translateY(0); } 50% { transform:scale(0.97,1.04) translateY(-6%); } 70% { transform:scale(1.02,0.98); } }
+  @keyframes breathe { from { transform:scale(1,1); } to { transform:scale(1.03,1.06); } }
+  @keyframes zz { 0% { opacity:0; transform:translate(0,4px); } 25% { opacity:0.9; } 100% { opacity:0; transform:translate(5px,-8px); } }
+  @media (prefers-reduced-motion: reduce) { .bot .body, .bot .z { animation:none !important; } }
+
+  /* interaktywny pulpit Maca (makieta marketingowa) */
+  .demo { margin:72px auto 0; max-width:1000px; }
+  .desk { position:relative; aspect-ratio:16/9; border-radius:26px; background:#0b1433; isolation:isolate; user-select:none; -webkit-user-select:none; }
+  .desk .wall { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; border-radius:inherit; }
+  .mb { position:absolute; z-index:1; top:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:center; }
+  .mb .pill { display:flex; align-items:center; gap:14px; height:30px; padding:0 12px; border-radius:9px; background:rgba(24,16,40,0.34); color:#fff; font-size:13px; font-weight:500; }
+  .mb .logo { display:flex; align-items:center; justify-content:center; width:15px; height:18px; font:400 16px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; color:#fff; }
+  .mb .logo svg { width:13px; height:16px; }
+  .mb svg { width:16px; height:16px; fill:#fff; display:block; }
+  /* ramka nie ucina treści (tapeta ma własne zaokrąglenie), więc notch wystaje 3px nad górną krawędź i z-index nad wszystkim:
+     żadna krawędź ramki ani paska menu nie przechodzi przez notch */
+  .notch { --k:1; --c:46px; --pad:16px; --top:37px; --hl:5px; position:absolute; top:-3px; z-index:5; left:50%; transform:translateX(-50%); width:190px; height:37px; background:#000; border-radius:0 0 14px 14px; overflow:hidden; cursor:pointer;
+           transition:width .45s cubic-bezier(.3,1.25,.5,1), height .45s cubic-bezier(.3,1.25,.5,1), border-radius .45s ease; }
+  .notch:not(.open) { left:calc(50% - 122.5px * var(--k)); transform:none; height:calc(36px * var(--k)); border-radius:0 0 calc(10px * var(--k)) calc(10px * var(--k)); transition:width .35s cubic-bezier(.3,1.2,.5,1); }
+  .notch .col { position:absolute; inset:0; transition:opacity .2s ease; }
+  .notch .slot { display:none; }
+  .notch .slot.on { display:block; line-height:0; }
+  .notch .earL { position:absolute; left:calc(9px * var(--k)); top:calc(3px + 8px * var(--k)); }
+  .notch .earL .bot { --s:calc(17px * var(--k)) !important; }
+  .notch .earR { position:absolute; left:calc(212px * var(--k)); top:3px; width:calc(43px * var(--k)); height:calc(33px * var(--k)); padding:calc(5px * var(--k)) calc(7px * var(--k)) calc(5px * var(--k)) calc(4px * var(--k)); display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:calc(3px * var(--k)); }
+  .notch .earR .bot { --s:calc(13px * var(--k)) !important; }
+  .notch .earR.one .bot { --s:calc(17px * var(--k)) !important; }
+  .notch .col .bot .dot { width:calc(6px * var(--k)); height:calc(6px * var(--k)); min-width:0; min-height:0; top:-2px; left:-2px; border-width:1.5px; }
+  .notch .col .bot .z { font-size:calc(8px * var(--k)); top:-4px; right:-6px; }
+  .notch .cam { position:absolute; left:calc(122.5px * var(--k) - 3px); top:calc(3px + 13.5px * var(--k)); width:6px; height:6px; border-radius:50%; background:#0d0d10; }
+  .notch .exp { position:absolute; left:0; right:0; top:var(--top); opacity:0; transition:opacity .2s ease; pointer-events:none; }
+  .notch.open { border-radius:0 0 22px 22px; cursor:default; }
+  .notch.open .col { opacity:0; }
+  .notch.open .exp { opacity:1; pointer-events:auto; transition-delay:.12s; }
+  .notch .row { position:relative; height:var(--c); }
+  .cell { position:absolute; top:0; width:var(--c); height:var(--c); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:left .5s cubic-bezier(.3,1.2,.5,1); }
+  .cell::before { content:""; position:absolute; inset:var(--hl); border-radius:9px; background:transparent; transition:background .15s ease; }
+  .cell.on::before { background:rgba(255,255,255,0.12); }
+  .cell .bot { margin-top:4px; }
+  .cell .bot .dot { top:-3px; left:-5px; }
+  .cell .bot .z { top:-7px; right:-7px; }
+  .cap { margin-top:6px; padding:0 var(--pad); text-align:center; }
+  .cap .l1 { display:block; white-space:nowrap; height:18px; font-size:12px; font-weight:500; line-height:18px; overflow:hidden; text-overflow:ellipsis; }
+  .cap .l2 { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-clamp:2; max-width:280px; margin:0 auto; height:32px; font-size:11.5px; line-height:16px; color:rgba(255,255,255,0.45); overflow:hidden; }
+  .cap .l2:empty { display:none; }
+  .cap .l1.n { color:var(--accent); }
+  .cap .l1.q { color:rgba(255,255,255,0.45); }
+  .bot.awake .ec, .bot.asleep .eo, .bot.awake .z, .bot.asleep .dot { display:none; }
+  .psst { margin-top:16px; text-align:center; font-size:13px; color:var(--muted); }
+  @media (max-width: 760px) {
+    .demo { margin-top:48px; }
+    .desk { aspect-ratio:auto; height:300px; border-radius:20px; }
+    .mb .pill .hide { display:none; }
+    .notch { --k:0.75; --c:36px; --pad:10px; --hl:3px; width:150px; }
+    .cell .bot { --s:20px !important; }
+    .cell .bot .dot { left:-3px; top:-2px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .notch, .notch *, .cell { transition:none !important; } }
+
+  .features { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding-top:112px; padding-bottom:32px; }
+  .f { border:1px solid var(--line); border-radius:16px; padding:28px 24px; background:var(--card); }
+  .f .ic { height:52px; display:flex; align-items:flex-end; gap:12px; margin-bottom:22px; }
+  .f h3 { font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+  .f p { margin-top:8px; color:var(--muted); font-size:15px; }
+
+  .closing { text-align:center; padding-top:96px; padding-bottom:112px; }
+  .closing h2 { font-size:clamp(28px, 4.4vw, 40px); letter-spacing:-0.03em; font-weight:700; }
+  .closing p { margin-top:12px; color:var(--muted); }
+
+  /* stopka: po lewej ciche "pssst" z bocikiem, który szepcze po najechaniu, po prawej karta Study of Space, na dole drobny druk */
+  footer { --w:clamp(60px, 11vw, 136px); border-top:1px solid var(--line); padding:64px 0 32px; color:var(--muted); font-size:13px; overflow:hidden; }
+  .ftop { display:flex; align-items:center; justify-content:space-between; gap:32px; }
+  .whisper { position:relative; display:flex; align-items:flex-end; gap:clamp(8px, 1.4vw, 16px); outline:none; cursor:default; min-width:0; }
+  .whisper .word { font:800 var(--w)/0.78 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; letter-spacing:-0.06em; color:#161618; padding-bottom:0.2em; transition:color .5s ease; user-select:none; }
+  .whisper .word span { display:inline-block; transition:transform .35s cubic-bezier(.3,1.6,.5,1), color .35s ease; }
+  .whisper:hover .word, .whisper:focus-visible .word { color:#232326; }
+  .whisper:hover .word span:nth-child(1) { transform:translateY(-5px); transition-delay:0s; }
+  .whisper:hover .word span:nth-child(2) { transform:translateY(-8px); transition-delay:.04s; }
+  .whisper:hover .word span:nth-child(3) { transform:translateY(-11px); transition-delay:.08s; }
+  .whisper:hover .word span:nth-child(4) { transform:translateY(-8px); transition-delay:.12s; }
+  .whisper:hover .word span:nth-child(5) { transform:translateY(-5px); transition-delay:.16s; color:var(--accent); }
+  .whisper .who { position:relative; margin-bottom:calc(var(--w) * 0.2 + 4px); }
+  .whisper .bot { --s:clamp(34px, 4.4vw, 52px) !important; }
+  .whisper:hover .bot .eo, .whisper:focus-visible .bot .eo { display:inline; }
+  .whisper:hover .bot .ec, .whisper:hover .bot .z, .whisper:focus-visible .bot .ec, .whisper:focus-visible .bot .z { display:none; }
+  .whisper:hover .bot .dot, .whisper:focus-visible .bot .dot { display:block; }
+  .whisper .say { position:absolute; left:50%; bottom:calc(100% + 14px); transform:translate(-50%, 6px); white-space:nowrap; background:#fff; color:#000; font-size:13px; font-weight:600; padding:7px 12px; border-radius:12px; opacity:0; transition:opacity .25s ease, transform .25s ease; pointer-events:none; }
+  .whisper .say::after { content:""; position:absolute; left:50%; top:100%; margin-left:-6px; border:6px solid transparent; border-top-color:#fff; }
+  .whisper:hover .say, .whisper:focus-visible .say { opacity:1; transform:translate(-50%, 0); }
+  .sos { display:flex; align-items:center; gap:12px; flex:none; width:auto; max-width:100%; margin-top:calc(var(--w) * 0.1); border:1px solid var(--line); border-radius:14px; padding:12px 18px 12px 12px; background:var(--card); color:var(--muted); transition:border-color .25s ease, background .25s ease; }
+  .sos { overflow:hidden; }
+  .sos:hover { border-color:#2c2c2e; background:#101012; }
+  .sos .txt { display:flex; flex-direction:column; gap:4px; }
+  .sos .k { white-space:nowrap; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#636366; }
+  .sos .v { display:block; font-size:14px; line-height:1.35; font-weight:600; letter-spacing:-0.01em; color:var(--fg); }
+  .sos .v b { color:var(--accent); font-weight:600; }
+  .sos .arr { display:inline-block; margin-left:4px; color:var(--muted); transition:transform .25s ease, color .25s ease; }
+  .sos:hover .arr { transform:translate(3px, -3px); color:var(--accent); }
+  .posters { position:relative; width:76px; height:68px; flex:none; }
+  .posters img { position:absolute; left:23px; top:5px; width:30px; height:auto; aspect-ratio:3/4; object-fit:cover; border-radius:4px; border:1px solid #2c2c2e; transition:transform .35s cubic-bezier(.3,1.4,.5,1); }
+  .posters img:nth-child(1) { transform:translateY(12px) rotate(-8deg) translateX(-10px); }
+  .posters img:nth-child(2) { transform:translateY(12px) rotate(6deg) translateX(10px); }
+  .posters img:nth-child(3) { transform:translateY(16px); }
+  .sos:hover .posters img:nth-child(1) { transform:translateY(0) rotate(-16deg) translate(-20px, 3px); }
+  .sos:hover .posters img:nth-child(2) { transform:translateY(0) rotate(14deg) translate(20px, 3px); }
+  .sos:hover .posters img:nth-child(3) { transform:translateY(-4px) scale(1.06); }
+  .fine { display:flex; justify-content:space-between; align-items:center; gap:12px 24px; flex-wrap:wrap; margin-top:28px; padding-top:20px; border-top:1px solid var(--line); }
+  .fine .made { color:var(--muted); }
+  .fine .made a { color:var(--fg); font-weight:600; white-space:nowrap; transition:color .2s ease; }
+  .fine .made a:hover { color:var(--accent); }
+  .fine .made .mark { display:inline-block; width:1.05em; height:1.05em; margin:0 0.3em 0 0.1em; vertical-align:-0.17em; color:currentColor; }
+  .fine .made .mark .brand-glyph { fill:var(--bg); }
+  .fine .note2 { color:#636366; }
+  .fine .left { display:flex; gap:6px 14px; flex-wrap:wrap; align-items:baseline; }
+  .fine .links { display:flex; gap:20px; }
+  .fine .links a:hover { color:var(--fg); }
+  @media (max-width: 760px) { .ftop { flex-direction:column; align-items:flex-start; gap:8px; } .sos { margin-top:0; } }
+  @media (max-width: 560px) { footer { padding-top:52px; } .fine { flex-direction:column; align-items:flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .whisper .word span, .posters img, .sos .arr, .whisper .say { transition:none !important; } }
+
+  @media (max-width: 760px) {
+    .wrap { padding:0 20px; }
+    .hero { padding-top:56px; padding-bottom:40px; }
+    .features { grid-template-columns:1fr; padding-top:64px; }
+    .closing { padding-top:64px; padding-bottom:80px; }
+  }
+</style>
+<style>
+  html, body { margin:0; height:100%; overflow:hidden; background:#0b1433; }
+  body { visibility:hidden; }
+  .demo { visibility:visible; position:fixed; top:0; left:0; margin:0 !important; max-width:none; width:100vw; height:100vh; }
+  .desk { aspect-ratio:auto; height:100%; border-radius:0; }
+  .desk .wall { border-radius:0; }
+  .notch { top:0 !important; }
+  .psst { display:none; }
+  .notch, .notch * { pointer-events:none !important; cursor:default !important; }
+</style>
+<script>
+  // skala dobrana tak, żeby ROZWINIĘTY notch mieścił się między pigułkami paska menu z odstępem 12 px
+  function fitEmbed() {
+    const demo = document.querySelector('.demo'), notch = document.getElementById('notch');
+    if (!demo || !notch) return;
+    demo.style.zoom = 1; demo.style.width = '100vw'; demo.style.height = '100vh';
+    const W = innerWidth, pills = document.querySelectorAll('.mb .pill');
+    const L = pills[0].getBoundingClientRect().right, R = W - pills[1].getBoundingClientRect().left;
+    const cs = getComputedStyle(notch), c = parseFloat(cs.getPropertyValue('--c')), pad = parseFloat(cs.getPropertyValue('--pad'));
+    const openW = notch.querySelectorAll('.cell').length * c + pad * 2;
+    const z = Math.min(1.6, (W - 24) / (2 * Math.max(L, R) + openW));
+    demo.style.zoom = z; demo.style.width = (100 / z) + 'vw'; demo.style.height = (100 / z) + 'vh';
+  }
+  addEventListener('DOMContentLoaded', fitEmbed); addEventListener('resize', fitEmbed);
+</script>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<nav class="wrap">
+  <span class="brand">Pssst</span>
+  <span class="soon">Coming soon</span>
+</nav>
+
+<main>
+  <section class="hero wrap">
+    <h1>Pssst</h1>
+    <p class="tagline">your bot wants something</p>
+    <p class="lead">A tiny bot pops out next to your notch <b>when one of your Grok Bot agents is waiting for you.</b> Everyone else stays asleep.</p>
+    <span class="cta soon" id="download" role="button" aria-disabled="true">Coming soon</span>
+    <p class="note">For macOS 14 or later. Unofficial companion app, works with the Grok Bot desktop app.</p>
+
+    <div class="demo">
+      <div class="desk">
+        <img class="wall" src="assets/wallpaper.webp" alt="" width="2400" height="1350" decoding="async">
+        <div class="mb">
+          <div class="pill"><span class="logo" aria-hidden="true"><svg viewBox="0 0 15 18"><path d="M12.2 9.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.7-.7C3.8 4.8 2.5 5.6 1.8 6.9c-1.6 2.7-.4 6.7 1.1 8.9.8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.8.7c1.2 0 1.9-1.1 2.6-2.2.8-1.2 1.2-2.4 1.2-2.5 0 0-2.3-.9-2.3-3.5zM10.1 3.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.6-1 1.6-.9 2.6.9.1 1.9-.5 2.5-1.2z"/></svg></span><span class="hide">Finder</span></div>
+          <div class="pill"><svg viewBox="0 0 16 16"><path d="M8 13.2l1.9-2.3a2.9 2.9 0 0 0-3.8 0zM3.6 8.3l1.3 1.6a4.8 4.8 0 0 1 6.2 0l1.3-1.6a6.9 6.9 0 0 0-8.8 0zM1 5.2l1.3 1.6a8.9 8.9 0 0 1 11.4 0L15 5.2a11 11 0 0 0-14 0z"/></svg><svg viewBox="0 0 16 16"><rect x="1" y="2.5" width="14" height="4.6" rx="2.3" fill="none" stroke="#fff" stroke-width="1.4"/><circle cx="4.4" cy="4.8" r="1.6"/><rect x="1" y="9" width="14" height="4.6" rx="2.3"/><circle cx="11.6" cy="11.3" r="1.5" fill="#000" opacity="0.55"/></svg><span id="clock">Wed 16:06</span></div>
+        </div>
+        <div class="notch" id="notch" data-main="scribe" aria-hidden="true">
+          <div class="col"><div class="earL"><span class="slot" data-id="scribe"><span class="bot asleep" style="--s:17px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#A98BFF" stroke="#A98BFF" stroke-width="5" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span></div><div class="earR" id="earR"><span class="slot" data-id="scout"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="ledger"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><circle cx="50" cy="62" r="32" fill="#3DDC97"/><rect x="47" y="18" width="6" height="18" rx="3" fill="#3DDC97"/><path d="M50 22 C49 10 60 4 72 6 C71 17 62 24 50 22 Z" fill="#3DDC97"/><g class="eo"><rect x="34.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="64.0" x2="43.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="64.0" x2="67.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="coach"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 28 L31 42 L50 22 L69 42 L88 28 L88 84 Q88 94 78 94 L22 94 Q12 94 12 84 Z" fill="#FF6B6B" stroke="#FF6B6B" stroke-width="7" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="skipper"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M6 52 C6 24 28 10 50 10 C72 10 94 24 94 52 Q94 58 88 58 L72 58 L72 86 Q72 94 64 94 L36 94 Q28 94 28 86 L28 58 L12 58 Q6 58 6 52 Z" fill="#FFC145"/><g class="eo"><rect x="37.4" y="67.6" width="6.0" height="12.8" rx="3.0" fill="#141414"/><rect x="56.6" y="67.6" width="6.0" height="12.8" rx="3.0" fill="#141414"/></g><g class="ec"><line x1="35.9" y1="76.0" x2="44.9" y2="76.0" stroke="#141414" stroke-width="3.6" stroke-linecap="round"/><line x1="55.1" y1="76.0" x2="64.1" y2="76.0" stroke="#141414" stroke-width="3.6" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="trader"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M14 52 A36 36 0 0 1 86 52 L86 92 Q74 80 62 92 Q50 102 38 92 Q26 80 14 92 Z" fill="#2BD2C6" stroke="#2BD2C6" stroke-width="4" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="56.0" x2="43.6" y2="56.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="56.0" x2="67.6" y2="56.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="buddy"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#FF8FC8"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#FF8FC8"/><circle cx="50" cy="13" r="8" fill="#FF8FC8"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span><span class="slot" data-id="watchdog"><span class="bot asleep" style="--s:13px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#D9B48F" stroke="#D9B48F" stroke-width="5" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></span></div><i class="cam"></i></div>
+          <div class="exp"><div class="row" id="row"><div class="cell" data-id="scout" data-name="Scout" data-msg="Found three new articles on your topic" role="button" aria-label="Scout"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="scribe" data-name="Scribe" data-msg="Draft for tomorrow's post is ready" role="button" aria-label="Scribe"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#A98BFF" stroke="#A98BFF" stroke-width="5" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="ledger" data-name="Ledger" data-msg="Three invoices are waiting for approval" role="button" aria-label="Ledger"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><circle cx="50" cy="62" r="32" fill="#3DDC97"/><rect x="47" y="18" width="6" height="18" rx="3" fill="#3DDC97"/><path d="M50 22 C49 10 60 4 72 6 C71 17 62 24 50 22 Z" fill="#3DDC97"/><g class="eo"><rect x="34.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="64.0" x2="43.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="64.0" x2="67.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="coach" data-name="Coach" data-msg="Today: 30 minutes of easy running" role="button" aria-label="Coach"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 28 L31 42 L50 22 L69 42 L88 28 L88 84 Q88 94 78 94 L22 94 Q12 94 12 84 Z" fill="#FF6B6B" stroke="#FF6B6B" stroke-width="7" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="skipper" data-name="Skipper" data-msg="Weather looks good for Saturday" role="button" aria-label="Skipper"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M6 52 C6 24 28 10 50 10 C72 10 94 24 94 52 Q94 58 88 58 L72 58 L72 86 Q72 94 64 94 L36 94 Q28 94 28 86 L28 58 L12 58 Q6 58 6 52 Z" fill="#FFC145"/><g class="eo"><rect x="37.4" y="67.6" width="6.0" height="12.8" rx="3.0" fill="#141414"/><rect x="56.6" y="67.6" width="6.0" height="12.8" rx="3.0" fill="#141414"/></g><g class="ec"><line x1="35.9" y1="76.0" x2="44.9" y2="76.0" stroke="#141414" stroke-width="3.6" stroke-linecap="round"/><line x1="55.1" y1="76.0" x2="64.1" y2="76.0" stroke="#141414" stroke-width="3.6" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="trader" data-name="Trader" data-msg="Weekly market summary is ready" role="button" aria-label="Trader"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M14 52 A36 36 0 0 1 86 52 L86 92 Q74 80 62 92 Q50 102 38 92 Q26 80 14 92 Z" fill="#2BD2C6" stroke="#2BD2C6" stroke-width="4" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="56.0" x2="43.6" y2="56.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="56.0" x2="67.6" y2="56.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="buddy" data-name="Buddy" data-msg="Found two places for Friday dinner" role="button" aria-label="Buddy"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#FF8FC8"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#FF8FC8"/><circle cx="50" cy="13" r="8" fill="#FF8FC8"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div><div class="cell" data-id="watchdog" data-name="Watchdog" data-msg="All services are up, nothing to report" role="button" aria-label="Watchdog"><span class="bot asleep" style="--s:24px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#D9B48F" stroke="#D9B48F" stroke-width="5" stroke-linejoin="round"/><g class="eo"><rect x="34.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div></div><div class="cap"><span class="l1" id="l1"></span><span class="l2" id="l2"></span></div></div>
+        </div>
+      </div>
+      <p class="psst" id="psst">Hover the notch, it's interactive.</p>
+    </div>
+  </section>
+
+  <section class="features wrap">
+    <div class="f">
+      <div class="ic"><span class="bot asleep " style="--s:44px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><circle cx="50" cy="62" r="32" fill="#3DDC97"/><rect x="47" y="18" width="6" height="18" rx="3" fill="#3DDC97"/><path d="M50 22 C49 10 60 4 72 6 C71 17 62 24 50 22 Z" fill="#3DDC97"/><line x1="32.4" y1="64.0" x2="43.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="64.0" x2="67.6" y2="64.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></svg><i class="z">z</i></span><span class="bot awake " style="--s:44px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#A98BFF" stroke="#A98BFF" stroke-width="5" stroke-linejoin="round"/><rect x="34.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="52.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span></div>
+      <h3>Asleep until it matters</h3>
+      <p>Bots sleep with closed eyes. When one asks you something or sends a new message, it wakes up with a blue dot and jumps to the front.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><span class="bot awake " style="--s:44px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M14 52 A36 36 0 0 1 86 52 L86 92 Q74 80 62 92 Q50 102 38 92 Q26 80 14 92 Z" fill="#2BD2C6" stroke="#2BD2C6" stroke-width="4" stroke-linejoin="round"/><rect x="34.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="46.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span></div>
+      <h3>One click to chat</h3>
+      <p>Hover the notch to see every bot in one row. Click a bot and its chat opens in Grok Bot. It goes back to sleep. Rest the cursor on a waiting bot for 3 seconds and it is marked as read, no chat opened.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><svg width="96" height="30" viewBox="0 0 96 30" aria-hidden="true"><rect x="0.5" y="0.5" width="95" height="29" rx="7" fill="#000" stroke="#3a3a3c"/><rect x="9" y="9" width="66" height="4" rx="2" fill="#8e8e93"/><rect x="9" y="17" width="44" height="4" rx="2" fill="#3a3a3c"/><circle cx="85" cy="15" r="3.5" fill="#0A84FF"/></svg></div>
+      <h3>Peek before you switch</h3>
+      <p>Hover a bot to read the first two lines of its last message. Tell right away if it matters, without opening Grok Bot.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><svg width="74" height="30" viewBox="0 0 74 30" aria-hidden="true"><rect x="0.5" y="0.5" width="73" height="29" rx="5" fill="none" stroke="#3a3a3c"/><rect x="22" y="0.5" width="30" height="9" rx="4" fill="#3a3a3c"/></svg></div>
+      <h3>Works without a notch</h3>
+      <p>On an external monitor it draws its own notch, only while someone is waiting. When everyone sleeps, nothing is on screen. Rest the cursor at the top center for a moment and the notch slides down with all your bots, then hides again.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13" fill="none" stroke="#3a3a3c" stroke-width="2"/><path d="M15 8v7l5 3" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round"/></svg><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M9 21h12l-2-3v-5a4 4 0 0 0-8 0v5z" fill="none" stroke="#3a3a3c" stroke-width="2" stroke-linejoin="round"/><path d="M6 6l18 18" stroke="#8e8e93" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>Snooze or mute a bot</h3>
+      <p>Right click a bot: remind me in 30 min, 1 hour or 3 hours. It sleeps and wakes up by itself if it still wants you. Or never wake me for this bot: it stays in the row, asleep, with a small mute icon.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><svg width="96" height="30" viewBox="0 0 96 30" aria-hidden="true"><g fill="none" stroke="#3a3a3c" stroke-width="1.5"><rect x="1" y="1" width="28" height="28" rx="6"/><rect x="34" y="1" width="28" height="28" rx="6"/><rect x="67" y="1" width="28" height="28" rx="6" stroke="#0A84FF"/></g><g fill="#f5f5f7" font-family="-apple-system,system-ui,sans-serif" font-size="14" text-anchor="middle"><text x="15" y="20">&#8997;</text><text x="48" y="20">&#8984;</text><text x="81" y="20">G</text></g></svg></div>
+      <h3>One shortcut, from anywhere</h3>
+      <p>Option Command G opens the chat of the bot that is waiting and marks it read. Nobody waiting? It shows all your bots. Record your own shortcut in Setup.</p>
+    </div>
+    <div class="f">
+      <div class="ic"><svg width="74" height="30" viewBox="0 0 74 30" aria-hidden="true"><rect x="0" y="4" width="74" height="22" rx="11" fill="#000" stroke="#3a3a3c"/><circle cx="14" cy="15" r="6" fill="#f5f5f7"/><circle cx="21" cy="15" r="6" fill="#30b0a0"/><circle cx="28" cy="15" r="6" fill="#34c759"/><rect x="39" y="13" width="26" height="4" rx="2" fill="#0A84FF"/></svg></div>
+      <h3>While you were away</h3>
+      <p>Lock your Mac or step away for more than 10 minutes. When you are back, the notch shows for a few seconds which bots spoke, like 3 bots while you were away. Never the messages themselves.</p>
+    </div>
+  </section>
+
+  <section class="closing wrap">
+    <h2>Stay in flow. Get pinged only when needed.</h2>
+    <p>Native, lightweight, flat. No dock icon.</p>
+    <span class="cta soon" role="button" aria-disabled="true">Coming soon</span>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="whisper" tabindex="0" aria-label="Pssst">
+        <div class="word" aria-hidden="true"><span>p</span><span>s</span><span>s</span><span>s</span><span>t</span></div>
+        <div class="who"><span class="say">psst, that's the end</span><span class="bot asleep" style="--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div>
+      </div>
+      <a class="sos" href="https://studyofspace.gallery" target="_blank" rel="noopener">
+        <span class="posters" aria-hidden="true"><img src="assets/sos/stripewave.svg" alt=""><img src="assets/sos/ring-orchid.svg" alt=""><img src="assets/sos/ring-flame.svg" alt=""></span>
+        <span class="txt"><span class="k">Looking for a cool wallpaper?</span><span class="v"><span style="white-space:nowrap">Try <b>Study of Space</b> for free<span class="arr">&#8599;</span></span></span></span>
+      </a>
+    </div>
+    <div class="fine">
+      <span class="left"><span class="made">Pssst is an independent app built by <a href="https://dawidw.pl" target="_blank" rel="noopener">Dawid</a> and <a href="https://sature.studio" target="_blank" rel="noopener"><svg class="mark" viewBox="0.3 9.6 80.1 80.1" role="img" aria-label="Sature Studio" xmlns="http://www.w3.org/2000/svg"><path d="M63.3569 9.66895C64.2632 9.66895 64.7171 9.66914 65.1001 9.6875C73.3337 10.0826 79.9198 16.6687 80.3149 24.9023C80.3333 25.2853 80.3335 25.7392 80.3335 26.6455V49.6689C80.3335 71.7602 62.4247 89.6688 40.3335 89.6689H17.3101C16.4038 89.6689 15.9499 89.6687 15.5669 89.6504C7.33328 89.2553 0.747159 82.6692 0.352051 74.4355C0.333694 74.0526 0.333496 73.5987 0.333496 72.6924V49.6689C0.333497 27.5777 18.2423 9.66912 40.3335 9.66895H63.3569Z" fill="currentColor"/><path class="brand-glyph" d="M40.5 24.416C42.1566 24.4163 43.5 25.7603 43.5 27.417V42.2578L53.9941 31.7637C55.1657 30.5921 57.0657 30.5921 58.2373 31.7637C59.4082 32.9353 59.4087 34.8355 58.2373 36.0068L47.7441 46.5H62.584C64.2404 46.5004 65.5838 47.8436 65.584 49.5C65.5837 51.1564 64.2403 52.4996 62.584 52.5H47.7432L58.2373 62.9941C59.4083 64.1658 59.4087 66.0659 58.2373 67.2373C57.0659 68.4087 55.1658 68.4083 53.9941 67.2373L43.5 56.7432V71.584C43.4996 73.2403 42.1564 74.5837 40.5 74.584C38.8436 74.5838 37.5004 73.2404 37.5 71.584V56.7441L27.0068 67.2373C25.8355 68.4087 23.9353 68.4082 22.7637 67.2373C21.5921 66.0657 21.5921 64.1657 22.7637 62.9941L33.2578 52.5H18.417C16.7603 52.5 15.4163 51.1566 15.416 49.5C15.4162 47.8433 16.7602 46.5 18.417 46.5H33.2568L22.7637 36.0068C21.5921 34.8353 21.5921 32.9352 22.7637 31.7637C23.9352 30.5921 25.8353 30.5921 27.0068 31.7637L37.5 42.2568V27.417C37.5 25.7602 38.8433 24.4162 40.5 24.416Z"/></svg>Sature</a>.</span><span class="note2">Not affiliated with or endorsed by Grok Bot. &copy; 2026</span></span>
+      <span class="links"><a href="changelog/">Changelog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+(() => {
+  const notch = document.getElementById('notch');
+  // Mac i iOS: jabłko z fontu systemowego (U+F8FF); inne systemy zostają przy SVG
+  if (/Mac|iPhone|iPad/.test(navigator.userAgent)) { const lg = document.querySelector('.mb .logo'); if (lg) lg.textContent = '\uF8FF'; }
+  const cells = [...notch.querySelectorAll('.cell')];
+  const bots = cells.map((el, i) => ({ id: el.dataset.id, name: el.dataset.name, msg: el.dataset.msg, el, order: i,
+    slot: notch.querySelector('.slot[data-id="' + el.dataset.id + '"] .bot'), awake: false, at: 0 }));
+  const earR = document.getElementById('earR');
+  const l1 = document.getElementById('l1'), l2 = document.getElementById('l2');
+  let tick = 0, focus = null, open = false, closeT = null;
+  // kursor 3 s bez przerwy nad czekającym botem: przeczytany (zasypia), ale zostaje na miejscu, dopóki kursor nie zejdzie
+  const READ_MS = 3000;
+  let dwellT = null, frozen = null, frozenFor = null;
+  const css = (n) => parseFloat(getComputedStyle(notch).getPropertyValue(n));
+
+  function setAwake(b, a) {
+    b.awake = a; b.at = a ? ++tick : 0;
+    for (const el of [b.el.querySelector('.bot'), b.slot]) { el.classList.toggle('awake', a); el.classList.toggle('asleep', !a); }
+  }
+  function ordered() {
+    const w = bots.filter(b => b.awake).sort((x, y) => y.at - x.at);
+    const list = w.concat(bots.filter(b => !b.awake).sort((x, y) => x.order - y.order));
+    if (!frozen) return list;
+    return frozen.filter(b => list.includes(b)).concat(list.filter(b => !frozen.includes(b)));
+  }
+  function render() {
+    const c = css('--c'), pad = css('--pad'), top = css('--top');
+    const list = ordered();
+    list.forEach((b, i) => { b.el.style.left = (pad + i * c) + 'px'; b.el.classList.toggle('on', b === focus); });
+    const main = bots.find(b => b.id === notch.dataset.main);
+    const waiting = bots.filter(b => b.awake && b !== main).sort((x, y) => y.at - x.at).slice(0, 4);
+    bots.forEach(b => { const sl = b.slot.parentElement; sl.classList.toggle('on', b === main || waiting.includes(b)); sl.style.order = waiting.indexOf(b); });
+    earR.classList.toggle('one', waiting.length === 1);
+    const n = bots.filter(b => b.awake).length;
+    if (focus) { l1.textContent = focus.name; l1.className = 'l1'; l2.textContent = focus.msg; }
+    else { l1.textContent = n ? n + ' waiting' : 'all quiet'; l1.className = 'l1 ' + (n ? 'n' : 'q'); l2.textContent = ''; }
+    if (open) {
+      notch.style.width = Math.min(bots.length * c + pad * 2, notch.parentElement.clientWidth - 24) + 'px';
+      notch.style.height = (top + c + 6 + 18 + (focus ? 32 : 0) + 12) + 'px';
+    } else { notch.style.width = 'calc(' + (33 + 179 + (waiting.length ? 43 : 0)) + 'px * var(--k))'; notch.style.height = ''; }
+  }
+  function hoverBot(b) {
+    clearTimeout(dwellT); dwellT = null;
+    if (frozen && b !== frozenFor) { frozen = null; frozenFor = null; }
+    if (b && b.awake) dwellT = setTimeout(() => {
+      if (!open || !b.awake) return;
+      frozen = ordered(); frozenFor = b;
+      setAwake(b, false); render();
+      setTimeout(() => wakeSomeone(b), 2600);
+    }, READ_MS);
+  }
+  function setOpen(o) { clearTimeout(closeT); if (!o) { focus = null; hoverBot(null); } open = o; notch.classList.toggle('open', o); render(); }
+  function wakeSomeone(except) {
+    const s = bots.filter(b => !b.awake && b !== except);
+    if (s.length) { setAwake(s[Math.floor(Math.random() * s.length)], true); render(); }
+  }
+
+  bots.forEach(b => {
+    b.el.addEventListener('mouseenter', () => { if (open) { focus = b; hoverBot(b); render(); } });
+    b.el.addEventListener('mouseleave', () => { const was = frozen; hoverBot(null); if (was) render(); });
+    b.el.addEventListener('click', (e) => {
+      if (!open) return;
+      e.stopPropagation();
+      focus = b; hoverBot(null);
+      if (b.awake) { setAwake(b, false); setTimeout(() => wakeSomeone(b), 2600); }
+      render();
+    });
+  });
+  const hover = matchMedia('(hover: hover)').matches;
+  if (!hover) document.getElementById('psst').textContent = "Tap the notch, it's interactive.";
+  let user = false, userT = null;
+  if (hover) {
+    notch.addEventListener('mouseenter', () => { user = true; clearTimeout(userT); setOpen(true); });
+    notch.addEventListener('mouseleave', () => { closeT = setTimeout(() => setOpen(false), 260); userT = setTimeout(() => { user = false; }, 4000); });
+  }
+  notch.addEventListener('click', () => { if (!open) setOpen(true); });
+  document.addEventListener('click', (e) => { if (open && !notch.contains(e.target)) setOpen(false); });
+  notch.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(!open); } if (e.key === 'Escape') setOpen(false); });
+  // pętla demo (gdy nikt nie dotyka): główny śpi sam, budzi się jeden bot, potem drugi, podgląd wiadomości, wszyscy zasypiają
+  const A = bots.find(b => b.id === 'ledger'), B = bots.find(b => b.id === 'coach');
+  const steps = [
+    [3000, () => { bots.forEach(b => b.awake && setAwake(b, false)); setOpen(false); }],
+    [2600, () => setAwake(A, true)],
+    [2600, () => setAwake(B, true)],
+    [3800, () => { setOpen(true); focus = B; }],
+  ];
+  let si = 0;
+  const loop = () => { const q = new URLSearchParams(location.search); if (!user && !q.get('demo') && !q.get('step')) { steps[si][1](); render(); } const d = steps[si][0]; si = (si + 1) % steps.length; setTimeout(loop, d); };
+  const st = new URLSearchParams(location.search).get('step');
+  addEventListener('resize', render);
+
+  bots.forEach(b => setAwake(b, b.el.querySelector('.bot').classList.contains('awake')));
+  // kolejność startowa: Scribe jako ostatnio odezwany
+  const k = bots.find(b => b.id === 'scribe'); if (k) k.at = ++tick;
+
+  const clock = document.getElementById('clock');
+  const t = () => { const d = new Date(); clock.textContent = d.toLocaleDateString('en-US', { weekday: 'short' }) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
+  t(); setInterval(t, 15000);
+
+  // do zrzutów: ?demo=open&focus=<id>
+  const q = new URLSearchParams(location.search);
+  if (st !== null) notch.style.transition = 'none';
+  if (st !== null) setTimeout(() => { for (let i = 0; i <= +st; i++) steps[i][1](); render(); }, 0);
+  else setTimeout(loop, 0);
+  if (q.get('demo') === 'open') { setOpen(true); const f = bots.find(b => b.id === q.get('focus')); if (f) { focus = f; } }
+  render();
+})();
+</script>
+</body>
+</html>

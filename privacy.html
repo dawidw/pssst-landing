@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy: Pssst</title>
+<meta name="description" content="How Pssst handles your data: it stays on your Mac.">
+<style>
+  :root { --bg:#000; --fg:#f5f5f7; --muted:#8e8e93; --line:#1c1c1e; --card:#0b0b0c; --accent:#0A84FF; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { background:var(--bg); color:var(--fg); font:16px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 28px; }
+  nav { display:flex; justify-content:space-between; align-items:center; height:72px; }
+  nav .brand { font-weight:600; letter-spacing:-0.01em; }
+  nav .link { color:var(--muted); font-size:14px; }
+  nav .link:hover { color:var(--fg); }
+
+  .hero { text-align:center; padding-top:96px; padding-bottom:64px; }
+  .hero h1 { font-size:clamp(44px, 8vw, 88px); line-height:1; letter-spacing:-0.04em; font-weight:700; }
+  .hero .tagline { margin-top:10px; font-size:clamp(20px, 2.6vw, 26px); font-weight:600; letter-spacing:-0.02em; color:var(--accent); }
+  .hero p.lead { margin:24px auto 0; max-width:560px; font-size:clamp(18px, 2.2vw, 21px); color:var(--muted); }
+  .hero p.lead b { color:var(--fg); font-weight:500; }
+  .cta { display:inline-flex; align-items:center; gap:10px; margin-top:40px; padding:14px 26px; border-radius:999px; background:var(--accent); color:#fff; font-weight:600; font-size:16px; }
+  .cta:hover { background:#2b95ff; }
+  /* jeszcze bez DMG: przycisk wygląda jak CTA, ale nic nie robi */
+  .cta.soon, .cta.soon:hover { background:var(--accent); cursor:default; user-select:none; }
+  nav .soon { color:var(--muted); font-size:14px; }
+  .cta svg { width:16px; height:16px; fill:#fff; }
+  .note { margin-top:14px; font-size:13px; color:var(--muted); }
+
+
+  /* bociki */
+  .bot { position:relative; display:inline-block; width:var(--s); height:var(--s); flex:none; }
+  .bot svg { width:100%; height:100%; display:block; overflow:visible; }
+  .bot .body { transform-origin:50% 100%; transform-box:fill-box; }
+  .bot.awake .body { animation:jelly 2.6s ease-in-out infinite; }
+  .bot.asleep .body { animation:breathe 2.2s ease-in-out infinite alternate; }
+  .bot .dot { position:absolute; top:-4px; left:-6px; width:calc(var(--s) * 0.34); height:calc(var(--s) * 0.34); min-width:9px; min-height:9px; border-radius:50%; background:var(--accent); border:2px solid #000; }
+  .bot .z { position:absolute; top:-8px; right:-9px; font:700 calc(var(--s) * 0.42)/1 ui-rounded, -apple-system, sans-serif; font-style:normal; color:#bdbdc2; animation:zz 2.4s ease-out infinite; }
+  @keyframes jelly { 0%,100% { transform:scale(1,1); } 30% { transform:scale(1.06,0.94) translateY(0); } 50% { transform:scale(0.97,1.04) translateY(-6%); } 70% { transform:scale(1.02,0.98); } }
+  @keyframes breathe { from { transform:scale(1,1); } to { transform:scale(1.03,1.06); } }
+  @keyframes zz { 0% { opacity:0; transform:translate(0,4px); } 25% { opacity:0.9; } 100% { opacity:0; transform:translate(5px,-8px); } }
+  @media (prefers-reduced-motion: reduce) { .bot .body, .bot .z { animation:none !important; } }
+
+  /* interaktywny pulpit Maca (makieta marketingowa) */
+  .demo { margin:72px auto 0; max-width:1000px; }
+  .desk { position:relative; aspect-ratio:16/9; border-radius:26px; background:#0b1433; isolation:isolate; user-select:none; -webkit-user-select:none; }
+  .desk .wall { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; border-radius:inherit; }
+  .mb { position:absolute; z-index:1; top:12px; left:14px; right:14px; display:flex; justify-content:space-between; align-items:center; }
+  .mb .pill { display:flex; align-items:center; gap:14px; height:30px; padding:0 12px; border-radius:9px; background:rgba(24,16,40,0.34); color:#fff; font-size:13px; font-weight:500; }
+  .mb .logo { display:flex; align-items:center; justify-content:center; width:15px; height:18px; font:400 16px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; color:#fff; }
+  .mb .logo svg { width:13px; height:16px; }
+  .mb svg { width:16px; height:16px; fill:#fff; display:block; }
+  /* ramka nie ucina treści (tapeta ma własne zaokrąglenie), więc notch wystaje 3px nad górną krawędź i z-index nad wszystkim:
+     żadna krawędź ramki ani paska menu nie przechodzi przez notch */
+  .notch { --k:1; --c:46px; --pad:16px; --top:37px; --hl:5px; position:absolute; top:-3px; z-index:5; left:50%; transform:translateX(-50%); width:190px; height:37px; background:#000; border-radius:0 0 14px 14px; overflow:hidden; cursor:pointer;
+           transition:width .45s cubic-bezier(.3,1.25,.5,1), height .45s cubic-bezier(.3,1.25,.5,1), border-radius .45s ease; }
+  .notch:not(.open) { left:calc(50% - 122.5px * var(--k)); transform:none; height:calc(36px * var(--k)); border-radius:0 0 calc(10px * var(--k)) calc(10px * var(--k)); transition:width .35s cubic-bezier(.3,1.2,.5,1); }
+  .notch .col { position:absolute; inset:0; transition:opacity .2s ease; }
+  .notch .slot { display:none; }
+  .notch .slot.on { display:block; line-height:0; }
+  .notch .earL { position:absolute; left:calc(9px * var(--k)); top:calc(3px + 8px * var(--k)); }
+  .notch .earL .bot { --s:calc(17px * var(--k)) !important; }
+  .notch .earR { position:absolute; left:calc(212px * var(--k)); top:3px; width:calc(43px * var(--k)); height:calc(33px * var(--k)); padding:calc(5px * var(--k)) calc(7px * var(--k)) calc(5px * var(--k)) calc(4px * var(--k)); display:flex; flex-wrap:wrap; align-content:center; justify-content:center; gap:calc(3px * var(--k)); }
+  .notch .earR .bot { --s:calc(13px * var(--k)) !important; }
+  .notch .earR.one .bot { --s:calc(17px * var(--k)) !important; }
+  .notch .col .bot .dot { width:calc(6px * var(--k)); height:calc(6px * var(--k)); min-width:0; min-height:0; top:-2px; left:-2px; border-width:1.5px; }
+  .notch .col .bot .z { font-size:calc(8px * var(--k)); top:-4px; right:-6px; }
+  .notch .cam { position:absolute; left:calc(122.5px * var(--k) - 3px); top:calc(3px + 13.5px * var(--k)); width:6px; height:6px; border-radius:50%; background:#0d0d10; }
+  .notch .exp { position:absolute; left:0; right:0; top:var(--top); opacity:0; transition:opacity .2s ease; pointer-events:none; }
+  .notch.open { border-radius:0 0 22px 22px; cursor:default; }
+  .notch.open .col { opacity:0; }
+  .notch.open .exp { opacity:1; pointer-events:auto; transition-delay:.12s; }
+  .notch .row { position:relative; height:var(--c); }
+  .cell { position:absolute; top:0; width:var(--c); height:var(--c); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:left .5s cubic-bezier(.3,1.2,.5,1); }
+  .cell::before { content:""; position:absolute; inset:var(--hl); border-radius:9px; background:transparent; transition:background .15s ease; }
+  .cell.on::before { background:rgba(255,255,255,0.12); }
+  .cell .bot { margin-top:4px; }
+  .cell .bot .dot { top:-3px; left:-5px; }
+  .cell .bot .z { top:-7px; right:-7px; }
+  .cap { margin-top:6px; padding:0 var(--pad); text-align:center; }
+  .cap .l1 { display:block; white-space:nowrap; height:18px; font-size:12px; font-weight:500; line-height:18px; overflow:hidden; text-overflow:ellipsis; }
+  .cap .l2 { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; line-clamp:2; max-width:280px; margin:0 auto; height:32px; font-size:11.5px; line-height:16px; color:rgba(255,255,255,0.45); overflow:hidden; }
+  .cap .l2:empty { display:none; }
+  .cap .l1.n { color:var(--accent); }
+  .cap .l1.q { color:rgba(255,255,255,0.45); }
+  .bot.awake .ec, .bot.asleep .eo, .bot.awake .z, .bot.asleep .dot { display:none; }
+  .psst { margin-top:16px; text-align:center; font-size:13px; color:var(--muted); }
+  @media (max-width: 760px) {
+    .demo { margin-top:48px; }
+    .desk { aspect-ratio:auto; height:300px; border-radius:20px; }
+    .mb .pill .hide { display:none; }
+    .notch { --k:0.75; --c:36px; --pad:10px; --hl:3px; width:150px; }
+    .cell .bot { --s:20px !important; }
+    .cell .bot .dot { left:-3px; top:-2px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .notch, .notch *, .cell { transition:none !important; } }
+
+  .features { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding-top:112px; padding-bottom:32px; }
+  .f { border:1px solid var(--line); border-radius:16px; padding:28px 24px; background:var(--card); }
+  .f .ic { height:52px; display:flex; align-items:flex-end; gap:12px; margin-bottom:22px; }
+  .f h3 { font-size:17px; font-weight:600; letter-spacing:-0.01em; }
+  .f p { margin-top:8px; color:var(--muted); font-size:15px; }
+
+  .closing { text-align:center; padding-top:96px; padding-bottom:112px; }
+  .closing h2 { font-size:clamp(28px, 4.4vw, 40px); letter-spacing:-0.03em; font-weight:700; }
+  .closing p { margin-top:12px; color:var(--muted); }
+
+  /* stopka: po lewej ciche "pssst" z bocikiem, który szepcze po najechaniu, po prawej karta Study of Space, na dole drobny druk */
+  footer { --w:clamp(60px, 11vw, 136px); border-top:1px solid var(--line); padding:64px 0 32px; color:var(--muted); font-size:13px; overflow:hidden; }
+  .ftop { display:flex; align-items:center; justify-content:space-between; gap:32px; }
+  .whisper { position:relative; display:flex; align-items:flex-end; gap:clamp(8px, 1.4vw, 16px); outline:none; cursor:default; min-width:0; }
+  .whisper .word { font:800 var(--w)/0.78 -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; letter-spacing:-0.06em; color:#161618; padding-bottom:0.2em; transition:color .5s ease; user-select:none; }
+  .whisper .word span { display:inline-block; transition:transform .35s cubic-bezier(.3,1.6,.5,1), color .35s ease; }
+  .whisper:hover .word, .whisper:focus-visible .word { color:#232326; }
+  .whisper:hover .word span:nth-child(1) { transform:translateY(-5px); transition-delay:0s; }
+  .whisper:hover .word span:nth-child(2) { transform:translateY(-8px); transition-delay:.04s; }
+  .whisper:hover .word span:nth-child(3) { transform:translateY(-11px); transition-delay:.08s; }
+  .whisper:hover .word span:nth-child(4) { transform:translateY(-8px); transition-delay:.12s; }
+  .whisper:hover .word span:nth-child(5) { transform:translateY(-5px); transition-delay:.16s; color:var(--accent); }
+  .whisper .who { position:relative; margin-bottom:calc(var(--w) * 0.2 + 4px); }
+  .whisper .bot { --s:clamp(34px, 4.4vw, 52px) !important; }
+  .whisper:hover .bot .eo, .whisper:focus-visible .bot .eo { display:inline; }
+  .whisper:hover .bot .ec, .whisper:hover .bot .z, .whisper:focus-visible .bot .ec, .whisper:focus-visible .bot .z { display:none; }
+  .whisper:hover .bot .dot, .whisper:focus-visible .bot .dot { display:block; }
+  .whisper .say { position:absolute; left:50%; bottom:calc(100% + 14px); transform:translate(-50%, 6px); white-space:nowrap; background:#fff; color:#000; font-size:13px; font-weight:600; padding:7px 12px; border-radius:12px; opacity:0; transition:opacity .25s ease, transform .25s ease; pointer-events:none; }
+  .whisper .say::after { content:""; position:absolute; left:50%; top:100%; margin-left:-6px; border:6px solid transparent; border-top-color:#fff; }
+  .whisper:hover .say, .whisper:focus-visible .say { opacity:1; transform:translate(-50%, 0); }
+  .sos { display:flex; align-items:center; gap:12px; flex:none; width:auto; max-width:100%; margin-top:calc(var(--w) * 0.1); border:1px solid var(--line); border-radius:14px; padding:12px 18px 12px 12px; background:var(--card); color:var(--muted); transition:border-color .25s ease, background .25s ease; }
+  .sos { overflow:hidden; }
+  .sos:hover { border-color:#2c2c2e; background:#101012; }
+  .sos .txt { display:flex; flex-direction:column; gap:4px; }
+  .sos .k { white-space:nowrap; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#636366; }
+  .sos .v { display:block; font-size:14px; line-height:1.35; font-weight:600; letter-spacing:-0.01em; color:var(--fg); }
+  .sos .v b { color:var(--accent); font-weight:600; }
+  .sos .arr { display:inline-block; margin-left:4px; color:var(--muted); transition:transform .25s ease, color .25s ease; }
+  .sos:hover .arr { transform:translate(3px, -3px); color:var(--accent); }
+  .posters { position:relative; width:76px; height:68px; flex:none; }
+  .posters img { position:absolute; left:23px; top:5px; width:30px; height:auto; aspect-ratio:3/4; object-fit:cover; border-radius:4px; border:1px solid #2c2c2e; transition:transform .35s cubic-bezier(.3,1.4,.5,1); }
+  .posters img:nth-child(1) { transform:translateY(12px) rotate(-8deg) translateX(-10px); }
+  .posters img:nth-child(2) { transform:translateY(12px) rotate(6deg) translateX(10px); }
+  .posters img:nth-child(3) { transform:translateY(16px); }
+  .sos:hover .posters img:nth-child(1) { transform:translateY(0) rotate(-16deg) translate(-20px, 3px); }
+  .sos:hover .posters img:nth-child(2) { transform:translateY(0) rotate(14deg) translate(20px, 3px); }
+  .sos:hover .posters img:nth-child(3) { transform:translateY(-4px) scale(1.06); }
+  .fine { display:flex; justify-content:space-between; align-items:center; gap:12px 24px; flex-wrap:wrap; margin-top:28px; padding-top:20px; border-top:1px solid var(--line); }
+  .fine .made { color:var(--muted); }
+  .fine .made a { color:var(--fg); font-weight:600; white-space:nowrap; transition:color .2s ease; }
+  .fine .made a:hover { color:var(--accent); }
+  .fine .made .mark { display:inline-block; width:1.05em; height:1.05em; margin:0 0.3em 0 0.1em; vertical-align:-0.17em; color:currentColor; }
+  .fine .made .mark .brand-glyph { fill:var(--bg); }
+  .fine .note2 { color:#636366; }
+  .fine .left { display:flex; gap:6px 14px; flex-wrap:wrap; align-items:baseline; }
+  .fine .links { display:flex; gap:20px; }
+  .fine .links a:hover { color:var(--fg); }
+  @media (max-width: 760px) { .ftop { flex-direction:column; align-items:flex-start; gap:8px; } .sos { margin-top:0; } }
+  @media (max-width: 560px) { footer { padding-top:52px; } .fine { flex-direction:column; align-items:flex-start; } }
+  @media (prefers-reduced-motion: reduce) { .whisper .word span, .posters img, .sos .arr, .whisper .say { transition:none !important; } }
+
+  @media (max-width: 760px) {
+    .wrap { padding:0 20px; }
+    .hero { padding-top:56px; padding-bottom:40px; }
+    .features { grid-template-columns:1fr; padding-top:64px; }
+    .closing { padding-top:64px; padding-bottom:80px; }
+  }
+
+  .legal { padding-top:56px; padding-bottom:96px; max-width:760px; }
+  .legal h1 { font-size:clamp(34px, 6vw, 48px); letter-spacing:-0.03em; font-weight:700; line-height:1.1; }
+  .legal .updated { margin-top:10px; color:var(--muted); font-size:14px; }
+  .legal h2 { margin-top:40px; font-size:19px; font-weight:600; letter-spacing:-0.01em; }
+  .legal p, .legal li { margin-top:12px; color:#c7c7cc; font-size:16px; }
+  .legal ul { padding-left:20px; }
+  .legal code { font:14px ui-monospace, SFMono-Regular, Menlo, monospace; color:var(--fg); background:#141416; padding:1px 6px; border-radius:6px; }
+  .legal a { color:var(--accent); }
+  .ph { color:var(--accent); background:rgba(10,132,255,0.12); padding:0 4px; border-radius:4px; }
+</style>
+</head>
+<body>
+<nav class="wrap">
+  <a class="brand" href="index.html">Pssst</a>
+  <span class="soon">Coming soon</span>
+</nav>
+<main class="legal wrap">
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Effective: 4 November 2026</p>
+
+  <h2>Short version</h2>
+  <p>Pssst runs entirely on your Mac. Its only network request is a daily check for app updates. It has no analytics, no tracking and no accounts. We do not collect, receive or store any of your data.</p>
+
+  <h2>Who we are</h2>
+  <p>Pssst is made and run by Dawid Woźniak, a private individual, who is the controller for anything covered by this policy. It is an independent project, not affiliated with or endorsed by Grok Bot. Contact: <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>.</p>
+
+  <h2>What the app reads on your Mac</h2>
+  <ul>
+    <li>The agent list file that the Grok Bot desktop app keeps in <code>~/Library/Application Support/Grok Bot</code>. From it the app uses each agent's id, name, avatar shape and color, whether it is hidden, and whether it is waiting for your reply or has unread messages, and the short preview of its latest message that the same file already contains. The preview is shown only while you hover a bot and is never saved or sent anywhere. The app reads nothing else in that folder.</li>
+    <li>Status messages that your own agents may send to the app's built in local server (stdio, on your Mac only), if you choose to set it up.</li>
+  </ul>
+
+  <h2>What the app stores</h2>
+  <p>Small files in <code>~/Library/Application Support/Pssst</code>. They never leave your Mac. Deleting the app and this folder removes everything.</p>
+  <ul>
+    <li><code>status.json</code>: the latest status of each agent.</li>
+    <li><code>last_waiting.json</code>: which agent last waited for you.</li>
+    <li><code>bot_prefs.json</code>: the snooze and mute settings you chose for individual bots (agent ids and times only, no message content).</li>
+    <li><code>shortcut.json</code>: your global keyboard shortcut, if you changed it.</li>
+  </ul>
+
+  <h2>Update checks</h2>
+  <p>Once a day, and when you choose Check for Updates, the app downloads a small public file (<code>appcast.xml</code>) from this website to see if a newer version exists. If you install an update, the new version is downloaded from GitHub. These requests contain only what any download does: your IP address and the app's name and version in the user agent. No information about your bots, messages or Mac is sent. The hosts (GitHub Pages and GitHub Releases, run by GitHub, Inc.) may log these requests under their own policy; we do not receive or use those logs.</p>
+
+  <h2>What happens when you click a bot</h2>
+  <p>The app asks macOS to open that agent's chat in the Grok Bot app using a <code>grokbot://</code> link. Grok Bot's own privacy terms apply to what happens there.</p>
+
+  <h2>This website</h2>
+  <p>This site is static. It sets no cookies, uses no local storage and loads no analytics or third party scripts. It is hosted on GitHub Pages by GitHub, Inc., which may log visitors' IP addresses and keep them under its own policy, see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>. We do not receive or use those logs.</p>
+
+  <h2>Your rights</h2>
+  <p>Because we do not process your personal data, there is nothing for us to access, correct or delete. If you have questions, write to <a href="mailto:dawid@plaind.pl">dawid@plaind.pl</a>. You can also complain to your data protection authority; in Poland that is the President of the Personal Data Protection Office (UODO).</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the new version will be posted on this page with a new effective date.</p>
+
+</main>
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="whisper" tabindex="0" aria-label="Pssst">
+        <div class="word" aria-hidden="true"><span>p</span><span>s</span><span>s</span><span>s</span><span>t</span></div>
+        <div class="who"><span class="say">psst, that's the end</span><span class="bot asleep" style="--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i><i class="z">z</i></span></div>
+      </div>
+      <a class="sos" href="https://studyofspace.gallery" target="_blank" rel="noopener">
+        <span class="posters" aria-hidden="true"><img src="assets/sos/stripewave.svg" alt=""><img src="assets/sos/ring-orchid.svg" alt=""><img src="assets/sos/ring-flame.svg" alt=""></span>
+        <span class="txt"><span class="k">Looking for a cool wallpaper?</span><span class="v"><span style="white-space:nowrap">Try <b>Study of Space</b> for free<span class="arr">&#8599;</span></span></span></span>
+      </a>
+    </div>
+    <div class="fine">
+      <span class="left"><span class="made">Pssst is an independent app built by <a href="https://dawidw.pl" target="_blank" rel="noopener">Dawid</a> and <a href="https://sature.studio" target="_blank" rel="noopener"><svg class="mark" viewBox="0.3 9.6 80.1 80.1" role="img" aria-label="Sature Studio" xmlns="http://www.w3.org/2000/svg"><path d="M63.3569 9.66895C64.2632 9.66895 64.7171 9.66914 65.1001 9.6875C73.3337 10.0826 79.9198 16.6687 80.3149 24.9023C80.3333 25.2853 80.3335 25.7392 80.3335 26.6455V49.6689C80.3335 71.7602 62.4247 89.6688 40.3335 89.6689H17.3101C16.4038 89.6689 15.9499 89.6687 15.5669 89.6504C7.33328 89.2553 0.747159 82.6692 0.352051 74.4355C0.333694 74.0526 0.333496 73.5987 0.333496 72.6924V49.6689C0.333497 27.5777 18.2423 9.66912 40.3335 9.66895H63.3569Z" fill="currentColor"/><path class="brand-glyph" d="M40.5 24.416C42.1566 24.4163 43.5 25.7603 43.5 27.417V42.2578L53.9941 31.7637C55.1657 30.5921 57.0657 30.5921 58.2373 31.7637C59.4082 32.9353 59.4087 34.8355 58.2373 36.0068L47.7441 46.5H62.584C64.2404 46.5004 65.5838 47.8436 65.584 49.5C65.5837 51.1564 64.2403 52.4996 62.584 52.5H47.7432L58.2373 62.9941C59.4083 64.1658 59.4087 66.0659 58.2373 67.2373C57.0659 68.4087 55.1658 68.4083 53.9941 67.2373L43.5 56.7432V71.584C43.4996 73.2403 42.1564 74.5837 40.5 74.584C38.8436 74.5838 37.5004 73.2404 37.5 71.584V56.7441L27.0068 67.2373C25.8355 68.4087 23.9353 68.4082 22.7637 67.2373C21.5921 66.0657 21.5921 64.1657 22.7637 62.9941L33.2578 52.5H18.417C16.7603 52.5 15.4163 51.1566 15.416 49.5C15.4162 47.8433 16.7602 46.5 18.417 46.5H33.2568L22.7637 36.0068C21.5921 34.8353 21.5921 32.9352 22.7637 31.7637C23.9352 30.5921 25.8353 30.5921 27.0068 31.7637L37.5 42.2568V27.417C37.5 25.7602 38.8433 24.4162 40.5 24.416Z"/></svg>Sature</a>.</span><span class="note2">Not affiliated with or endorsed by Grok Bot. &copy; 2026</span></span>
+      <span class="links"><a href="changelog/">Changelog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

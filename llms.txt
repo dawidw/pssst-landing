@@ -1,0 +1,18 @@
+# Pssst
+
+> Pssst is a tiny native macOS app that lives next to the MacBook notch and shows which of your Grok Bot agents need you, with a short message preview so you can tell if it matters before you switch apps. Tagline: your bot wants something.
+
+Pssst is an independent app built by Dawid Woźniak and Sature. It is not affiliated with or endorsed by Grok Bot. Status: coming soon for Mac.
+
+## Product
+
+- [Pssst landing page](https://pssst.dawidw.pl/): features, notch demo and FAQ
+- [Privacy](https://pssst.dawidw.pl/privacy.html): what the app reads and why no data leaves your Mac
+- [Terms](https://pssst.dawidw.pl/terms.html): terms of use
+- [Changelog](https://pssst.dawidw.pl/changelog/): what is new in each version
+
+## Author
+
+- [Dawid Woźniak](https://dawidw.pl): Product Designer from Poland, AI design and agent assisted coding
+- [Dawid on X](https://x.com/Dawidwu)
+- [Sature](https://sature.studio): design studio co-run by Dawid
