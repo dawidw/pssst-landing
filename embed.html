@@ -33,7 +33,8 @@
   a { color:inherit; text-decoration:none; }
   .wrap { max-width:1080px; margin:0 auto; padding:0 28px; }
   nav { display:flex; justify-content:space-between; align-items:center; height:72px; }
-  nav .brand { font-weight:600; letter-spacing:-0.01em; }
+  nav .brand { display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:-0.01em; }
+  nav .brand img { width:26px; height:26px; display:block; }
   nav .link { color:var(--muted); font-size:14px; }
   nav .link:hover { color:var(--fg); }
 
@@ -249,7 +250,7 @@
 </head>
 <body>
 <nav class="wrap">
-  <span class="brand">Pssst</span>
+  <span class="brand"><img src="assets/pssst-icon.png?v=2" width="26" height="26" alt="">Pssst</span>
   <a class="buy" href="https://www.creem.io/payment/prod_7XmeW60BngJIh8yoQBXaKo">Buy for $7</a>
 </nav>
 
