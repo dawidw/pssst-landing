@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.7</title>
+      <pubDate>Fri, 06 Nov 2026 19:54:04 GMT</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>0.2.7</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Fix an empty island remaining after switching from a MacBook display to an external monitor; island visibility now refreshes immediately when the display changes</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.7/Pssst-0.2.7.dmg" length="2661099" type="application/octet-stream" sparkle:edSignature="Z00m+OWhHQFSduKunNmUNinw0Bz634rJ+cCwJ5cVwDPjndM8IYLRxYEYUxa6F8n7aHH498Th5T6Jsv1Ixr7jDw=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.6</title>
       <pubDate>Fri, 06 Nov 2026 11:49:39 GMT</pubDate>
       <sparkle:version>8</sparkle:version>
