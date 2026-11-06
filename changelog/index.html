@@ -12,8 +12,7 @@
   a { color:inherit; text-decoration:none; }
   .wrap { max-width:1080px; margin:0 auto; padding:0 28px; }
   nav { display:flex; justify-content:space-between; align-items:center; height:72px; }
-  nav .brand { display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:-0.01em; }
-  nav .brand img { width:26px; height:26px; display:block; }
+  nav .brand { font-weight:600; letter-spacing:-0.01em; }
   nav .link { color:var(--muted); font-size:14px; }
   nav .link:hover { color:var(--fg); }
 
@@ -215,12 +214,13 @@
 </head>
 <body>
 <nav class="wrap">
-  <a class="brand" href="/"><img src="/assets/pssst-icon.png?v=2" width="26" height="26" alt="">Pssst</a>
+  <a class="brand" href="/">Pssst</a>
   <a class="buy" href="https://www.creem.io/payment/prod_7XmeW60BngJIh8yoQBXaKo">Buy for $7</a>
 </nav>
 <main class="legal wrap">
   <h1>Changelog</h1>
   <p class="updated">What is new in Pssst.</p>
+  <h2 id="v0.2.5">0.2.5 <span class="updated" style="font-weight:400">2026-11-06</span></h2><ul><li>On displays without a notch, a waiting bot shows a status bubble again instead of an empty black pill</li><li>Message preview in the expanded panel sits in a chat bubble under the bot name</li></ul>
   <h2 id="v0.2.4">0.2.4 <span class="updated" style="font-weight:400">2026-11-05</span></h2><ul><li>Update dialogs are now always in English</li></ul>
   <h2 id="v0.2.3">0.2.3 <span class="updated" style="font-weight:400">2026-11-04</span></h2><ul><li>Signed with Developer ID and notarized by Apple</li><li>new app icon</li></ul>
   <h2 id="v0.2.2">0.2.2 <span class="updated" style="font-weight:400">2026-11-04</span></h2><ul><li>Fixed the width of the collapsed notch: it is always 255 pt now, with no text and no stack of away bots.</li><li>No more false error in the log when there is simply no update.</li></ul>

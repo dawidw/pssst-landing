@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.5</title>
+      <pubDate>Fri, 06 Nov 2026 11:39:47 GMT</pubDate>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>0.2.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>On displays without a notch, a waiting bot shows a status bubble again instead of an empty black pill; Message preview in the expanded panel sits in a chat bubble under the bot name</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.5/Pssst-0.2.5.dmg" length="2658118" type="application/octet-stream" sparkle:edSignature="K9Uosq9eKZjItoRPBbeix9/52Hk+zncb0X96E7iixbvG8mtPKg8WdiLVnIMrjKuNKhwNyVxX0OABJsHiPb0vDQ=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.4</title>
       <pubDate>Wed, 04 Nov 2026 23:07:00 GMT</pubDate>
       <sparkle:version>6</sparkle:version>
