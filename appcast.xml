@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.9</title>
+      <pubDate>Mon, 09 Nov 2026 20:17:20 GMT</pubDate>
+      <sparkle:version>11</sparkle:version>
+      <sparkle:shortVersionString>0.2.9</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Hovering the notch area opens the bot list again. While idle, nothing is drawn on a notched Mac or on a display without a notch.</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.9/Pssst-0.2.9.dmg" length="2662375" type="application/octet-stream" sparkle:edSignature="fy8vQ8kTn4BEMQRKNVpxnHrTwEZ0rb5mRB1xT9sGgApFT6qxYnWmiodnb29y3SMm3KYCHr598F3RN2GOXkiCAA=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.8</title>
       <pubDate>Mon, 09 Nov 2026 20:09:30 GMT</pubDate>
       <sparkle:version>10</sparkle:version>
