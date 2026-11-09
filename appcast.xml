@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.10</title>
+      <pubDate>Mon, 09 Nov 2026 20:37:24 GMT</pubDate>
+      <sparkle:version>12</sparkle:version>
+      <sparkle:shortVersionString>0.2.10</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>The island grows out of the notch with a spring and shrinks back smoothly. Content fades in after the shape and fades out before it closes. Reduce Motion uses a short fade.</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.10/Pssst-0.2.10.dmg" length="2668808" type="application/octet-stream" sparkle:edSignature="lsuB4xu99eTA6IaQlkM21NcwLvQNrfCGsiMOuvU63kV2JfYJPNdvZrX9Q8RRjgKhU4LuKmYvF2s7WX9oMNM5AA=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.9</title>
       <pubDate>Mon, 09 Nov 2026 20:17:20 GMT</pubDate>
       <sparkle:version>11</sparkle:version>
