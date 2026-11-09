@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.11</title>
+      <pubDate>Mon, 09 Nov 2026 20:45:43 GMT</pubDate>
+      <sparkle:version>13</sparkle:version>
+      <sparkle:shortVersionString>0.2.11</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Bots appear together with the island as it grows, instead of popping in after the shape is already open.</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.11/Pssst-0.2.11.dmg" length="2669641" type="application/octet-stream" sparkle:edSignature="mxnFVhbzibSUCA0N/AmyzHdN6HVyZ/gk+N6wBTfGxOZPWbRPvrXZ3UWtXpK8nnNLaAYmykDjUg1Ao+X2cULeBg=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.10</title>
       <pubDate>Mon, 09 Nov 2026 20:37:24 GMT</pubDate>
       <sparkle:version>12</sparkle:version>
