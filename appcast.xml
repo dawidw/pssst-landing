@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.13</title>
+      <pubDate>Tue, 17 Nov 2026 12:03:51 GMT</pubDate>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.2.13</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Multi-account Grok Bot: the island follows the signed-in account and refreshes right after you switch, no restart needed. Bots from your other accounts appear after a divider; clicking one shows a switch hint instead of a bot-not-found error.</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.13/Pssst-0.2.13.dmg" length="2700650" type="application/octet-stream" sparkle:edSignature="N9enzjZJBV5+sITpwhkWe50qCZrwcdsfQYXe7ZwyC0jrMErxPobBnh2rRAjjaGYI2GAhzrWsjB36Q2pNdPbKCg=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.12</title>
       <pubDate>Mon, 09 Nov 2026 20:52:34 GMT</pubDate>
       <sparkle:version>14</sparkle:version>
