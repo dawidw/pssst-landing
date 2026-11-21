@@ -211,7 +211,11 @@
   .fine .left { display:flex; gap:6px 14px; flex-wrap:wrap; align-items:baseline; }
   .fine .links { display:flex; gap:20px; }
   .fine .links a:hover { color:var(--fg); }
-  @media (max-width: 760px) { .ftop { flex-direction:column; align-items:flex-start; gap:8px; } .sos { margin-top:0; } }
+  .macbase-badge { display:flex; justify-content:center; margin-top:32px; }
+  .macbase-badge a { display:block; line-height:0; opacity:.9; transition:opacity .2s ease; }
+  .macbase-badge a:hover { opacity:1; }
+  .macbase-badge img { height:52px !important; width:auto !important; }
+  @media (max-width: 760px) { .ftop { flex-direction:column; align-items:flex-start; gap:8px; } .sos { margin-top:0; } .macbase-badge { margin-top:24px; } .macbase-badge img { height:44px !important; } }
   @media (max-width: 560px) { footer { padding-top:52px; } .fine { flex-direction:column; align-items:flex-start; } }
   @media (prefers-reduced-motion: reduce) { .whisper .word span, .posters img, .sos .arr, .whisper .say { transition:none !important; } }
 
@@ -360,6 +364,13 @@
       <a class="sos" href="https://studyofspace.gallery" target="_blank" rel="noopener">
         <span class="posters" aria-hidden="true"><img src="assets/sos/stripewave.svg" alt=""><img src="assets/sos/ring-orchid.svg" alt=""><img src="assets/sos/ring-flame.svg" alt=""></span>
         <span class="txt"><span class="k">Looking for a cool wallpaper?</span><span class="v"><span style="white-space:nowrap">Try <b>Study of Space</b> for free<span class="arr">&#8599;</span></span></span></span>
+      </a>
+    </div>
+    <div class="macbase-badge">
+      <a href="https://macbase.app/apps/pssst?ref=badge" target="_blank" rel="noopener">
+        <img src="https://macbase.app/badge/featured-on-macbase-dark.svg"
+             alt="Pssst | Your Grok Bot wants something is featured on MacBase"
+             height="72" style="height:72px;width:auto">
       </a>
     </div>
     <div class="fine">
