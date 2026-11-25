@@ -161,45 +161,43 @@
   .f p { margin-top:8px; color:var(--muted); font-size:15px; }
 
   /* menu bar feature mockup */
-  .mbfeat { display:grid; grid-template-columns:1fr 1.05fr; gap:40px; align-items:center; margin-top:48px; padding:32px 28px; border:1px solid var(--line); border-radius:20px; background:var(--card); }
-  .mbfeat h3 { font-size:clamp(22px, 3vw, 28px); font-weight:700; letter-spacing:-0.03em; }
-  .mbfeat .sub { margin-top:12px; color:var(--muted); font-size:15px; max-width:420px; }
-  .mbmock { position:relative; min-height:200px; display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-start; padding:8px 12px 0 0; user-select:none; }
-  .mbmock .strip { display:flex; align-items:center; justify-content:flex-end; gap:10px; height:30px; padding:0 10px; border-radius:9px; background:rgba(40,40,44,0.85); box-shadow:0 1px 0 rgba(255,255,255,0.06) inset; }
-  .mbmock .strip .ic { line-height:0; position:relative; cursor:default; }
-  .mbmock .strip .ic .bot { --s:18px !important; }
-  .mbmock .strip .ic .bot.mono .body path,
-  .mbmock .strip .ic .bot.mono .body rect,
-  .mbmock .strip .ic .bot.mono .body circle { fill:#8e8e93 !important; stroke:#8e8e93 !important; }
-  .mbmock .strip .ic .bot .z { display:none; }
-  .mbmock .strip .ic .cnt { position:absolute; top:-5px; right:-7px; min-width:14px; height:14px; padding:0 4px; border-radius:7px; background:var(--accent); color:#fff; font:700 9px/14px -apple-system, sans-serif; text-align:center; border:1.5px solid #1c1c1e; }
-  .mbmock .menu { margin-top:6px; width:min(240px, 100%); border-radius:8px; background:rgba(44,44,46,0.96); border:1px solid rgba(255,255,255,0.08); box-shadow:0 12px 40px rgba(0,0,0,0.45), 0 0 0 0.5px rgba(0,0,0,0.3); padding:5px 0; font:13px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; color:#f5f5f7; text-align:left; }
-  .mbmock .mi { display:flex; align-items:center; gap:8px; padding:4px 12px 4px 10px; min-height:24px; position:relative; cursor:default; }
-  .mbmock .mi .bot { --s:16px !important; flex:none; }
-  .mbmock .mi .bot .dot, .mbmock .mi .bot .z { display:none; }
+  .mbsection { padding-bottom:48px; }
+  .mbfeat { display:grid; grid-template-columns:minmax(0, 300px) minmax(0, 1fr); gap:clamp(28px, 4vw, 56px); align-items:center; padding:32px 32px 36px; border:1px solid var(--line); border-radius:20px; background:var(--card); }
+  .mbfeat h3 { font-size:clamp(20px, 2.2vw, 26px); font-weight:700; letter-spacing:-0.03em; white-space:nowrap; }
+  .mbfeat .sub { margin-top:10px; color:var(--muted); font-size:15px; line-height:1.45; max-width:28em; }
+  .mbmock { position:relative; min-height:min(320px, 52vw); border-radius:14px; background:linear-gradient(180deg, #12121a 0%, #0a0a0e 100%); border:1px solid rgba(255,255,255,0.06); padding:14px 18px 20px; user-select:none; overflow:hidden; }
+  .mbmock .bar { display:flex; align-items:center; justify-content:flex-end; height:34px; padding:0 8px; border-radius:9px; background:rgba(32,32,36,0.92); box-shadow:0 1px 0 rgba(255,255,255,0.05) inset; margin-bottom:10px; }
+  .mbmock .bar .ic { line-height:0; position:relative; }
+  .mbmock .bar .ic .bot { --s:22px !important; }
+  .mbmock .bar .ic .bot .z { display:none; }
+  .mbmock .bar .ic .cnt { position:absolute; top:-6px; right:-8px; min-width:16px; height:16px; padding:0 4px; border-radius:8px; background:var(--accent); color:#fff; font:700 10px/16px -apple-system, sans-serif; text-align:center; border:2px solid #1a1a1e; }
+  .mbmock .menus { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:flex-start; gap:6px; }
+  .mbmock .menu { width:268px; flex:none; border-radius:8px; background:rgba(50,50,54,0.97); border:1px solid rgba(255,255,255,0.1); box-shadow:0 16px 48px rgba(0,0,0,0.55); padding:6px 0; font:13.5px/1.25 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; color:#f5f5f7; text-align:left; }
+  .mbmock .mi { display:flex; align-items:center; gap:10px; padding:5px 14px 5px 12px; min-height:28px; position:relative; cursor:default; }
+  .mbmock .mi .bot { --s:20px !important; flex:none; margin-top:1px; }
+  .mbmock .mi .bot .z { display:none; }
+  .mbmock .mi.wait .bot .dot { display:block; top:-3px; left:-4px; width:8px; height:8px; min-width:8px; min-height:8px; border-width:1.5px; border-color:#323236; }
+  .mbmock .mi:not(.wait) .bot .dot { display:none; }
   .mbmock .mi .nm { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .mbmock .mi .ar { color:rgba(255,255,255,0.35); font-size:11px; margin-left:auto; padding-left:8px; }
-  .mbmock .mi.wait .nm { font-weight:500; }
-  .mbmock .mi.main { opacity:0.55; }
-  .mbmock .mi.hi { background:rgba(255,255,255,0.1); border-radius:4px; margin:0 4px; padding-left:6px; padding-right:8px; }
-  .mbmock .mi.hi .ar { color:rgba(255,255,255,0.5); }
-  .mbmock .sep { height:1px; margin:5px 8px; background:rgba(255,255,255,0.1); }
-  .mbmock .mi.dim { color:rgba(255,255,255,0.45); padding-left:28px; font-size:12px; }
-  .mbmock .subm { display:none; position:absolute; left:calc(100% + 4px); top:-4px; width:210px; padding:5px 0; border-radius:8px; background:rgba(44,44,46,0.98); border:1px solid rgba(255,255,255,0.08); box-shadow:0 12px 40px rgba(0,0,0,0.45); z-index:2; }
-  .mbmock .mi.hi:hover .subm, .mbmock .mi.hi:focus-within .subm { display:block; }
-  .mbmock .si { padding:4px 14px; min-height:22px; color:rgba(255,255,255,0.92); white-space:nowrap; }
-  .mbmock .si.accent { color:var(--accent); }
-  .mbmock .si.muted { color:rgba(255,255,255,0.45); font-size:12px; }
+  .mbmock .mi .ar { color:rgba(255,255,255,0.38); font-size:12px; margin-left:auto; padding-left:6px; font-weight:500; }
+  .mbmock .mi.wait .nm { font-weight:600; }
+  .mbmock .mi.main .nm { font-weight:400; color:rgba(255,255,255,0.72); }
+  .mbmock .mi.hi { background:rgba(255,255,255,0.11); border-radius:5px; margin:0 5px; padding-left:7px; padding-right:10px; }
+  .mbmock .mi.plain { padding-left:14px; color:rgba(255,255,255,0.92); }
+  .mbmock .sep { height:1px; margin:6px 10px; background:rgba(255,255,255,0.11); }
+  .mbmock .mi.dim { padding-left:42px; color:rgba(255,255,255,0.45); font-size:13px; min-height:26px; }
+  .mbmock .subm { display:block; width:248px; flex:none; border-radius:8px; background:rgba(50,50,54,0.98); border:1px solid rgba(255,255,255,0.1); box-shadow:0 16px 48px rgba(0,0,0,0.55); padding:6px 0; font:13.5px/1.25 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif; }
+  .mbmock .si { padding:5px 16px; min-height:28px; color:rgba(255,255,255,0.92); white-space:nowrap; }
+  .mbmock .si.accent { color:var(--accent); font-weight:500; }
+  .mbmock .si.muted { color:rgba(255,255,255,0.45); }
   @media (max-width: 760px) {
-    .mbfeat { grid-template-columns:1fr; gap:28px; margin-top:32px; padding:24px 20px; }
-    .mbmock { align-items:stretch; padding-right:0; }
-    .mbmock .strip { justify-content:flex-end; }
-    .mbmock .menu { width:100%; max-width:280px; margin-left:auto; margin-right:0; }
-    .mbmock .subm { left:auto; right:calc(100% + 4px); }
-  }
-  @media (max-width: 400px) {
-    .mbmock .subm { position:static; display:block; margin:4px 8px 6px; width:auto; box-shadow:none; border:none; background:rgba(0,0,0,0.2); }
-    .mbmock .mi.hi .subm { display:block; }
+    .mbfeat { grid-template-columns:1fr; gap:22px; padding:24px 20px 22px; }
+    .mbfeat h3 { white-space:normal; }
+    .mbfeat .sub { max-width:none; }
+    .mbmock { min-height:0; padding:12px 12px 16px; }
+    .mbmock .menus { flex-direction:column; align-items:stretch; }
+    .mbmock .menu, .mbmock .subm { width:100%; max-width:none; }
+    .mbmock .subm { margin-top:0; }
   }
 
   .closing { text-align:center; padding-top:96px; padding-bottom:112px; }
@@ -386,46 +384,55 @@
       <h3>While you were away</h3>
       <p>Lock your Mac or step away for more than 10 minutes. When you are back, the notch shows for a few seconds which bots spoke, like 3 bots while you were away. Never the messages themselves.</p>
     </div>
+  </section>
 
+  <section class="wrap mbsection">
     <article class="mbfeat">
-      <div>
-        <h3>Menu bar mode</h3>
-        <p class="sub">Optional icon in the menu bar. All quiet? A monochrome bot. Someone waiting? Their avatar with a blue dot or a count. Click for the native macOS menu: waiting bots and your main bot up top, the rest under Show more. Hover a bot for Open, snooze, mute, or Main bot. In Setup pick Notch, Menu bar, or Both. Great on Macs without a notch, or if you prefer the menu bar.</p>
+      <div class="mbcopy">
+        <h3>Or keep it in the menu bar</h3>
+        <p class="sub">Prefer the menu bar or no notch? Pick Notch, Menu bar, or Both in Setup.</p>
       </div>
       <div class="mbmock" aria-hidden="true">
-        <div class="strip">
+        <div class="bar">
           <span class="ic">
-            <span class="bot awake" style="--s:18px"><svg viewBox="0 0 100 100"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i></span>
+            <span class="bot awake" style="--s:22px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><rect x="12" y="36" width="76" height="58" rx="18" fill="#F2F2F5"/><rect x="46.5" y="16" width="7" height="24" rx="3.5" fill="#F2F2F5"/><circle cx="50" cy="13" r="8" fill="#F2F2F5"/><g class="eo"><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g><g class="ec"><line x1="32.4" y1="66.0" x2="43.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="66.0" x2="67.6" y2="66.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></g></svg><i class="dot"></i></span>
             <span class="cnt">2</span>
           </span>
         </div>
-        <div class="menu">
-          <div class="mi wait hi" tabindex="0">
-            <span class="bot awake" style="--s:16px"><svg viewBox="0 0 100 100"><g class="body"><circle cx="50" cy="62" r="32" fill="#3DDC97"/><rect x="47" y="18" width="6" height="18" rx="3" fill="#3DDC97"/><path d="M50 22 C49 10 60 4 72 6 C71 17 62 24 50 22 Z" fill="#3DDC97"/><rect x="34.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span>
-            <span class="nm">Ledger</span>
-            <span class="ar">&#8250;</span>
-            <div class="subm">
-              <div class="si">Open</div>
-              <div class="si">Remind me in 30 min</div>
-              <div class="si">Remind me in 1 hour</div>
-              <div class="si">Remind me in 3 hours</div>
-              <div class="sep"></div>
-              <div class="si muted">Never wake me for this bot</div>
-              <div class="si accent">Main bot</div>
+        <div class="menus">
+          <div class="menu">
+            <div class="mi wait hi">
+              <span class="bot awake" style="--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><circle cx="50" cy="62" r="32" fill="#3DDC97"/><rect x="47" y="18" width="6" height="18" rx="3" fill="#3DDC97"/><path d="M50 22 C49 10 60 4 72 6 C71 17 62 24 50 22 Z" fill="#3DDC97"/><rect x="34.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="54.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span>
+              <span class="nm">Ledger</span>
+              <span class="ar">&#8250;</span>
             </div>
+            <div class="mi wait">
+              <span class="bot awake" style="--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 28 L31 42 L50 22 L69 42 L88 28 L88 84 Q88 94 78 94 L22 94 Q12 94 12 84 Z" fill="#FF6B6B" stroke="#FF6B6B" stroke-width="7" stroke-linejoin="round"/><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span>
+              <span class="nm">Coach</span>
+              <span class="ar">&#8250;</span>
+            </div>
+            <div class="mi main">
+              <span class="bot asleep" style="--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#A98BFF" stroke="#A98BFF" stroke-width="5" stroke-linejoin="round"/><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></svg></span>
+              <span class="nm">Scribe</span>
+              <span class="ar">&#8250;</span>
+            </div>
+            <div class="sep"></div>
+            <div class="mi dim">Show more (5)</div>
+            <div class="sep"></div>
+            <div class="mi plain">Check for Updates</div>
+            <div class="mi plain">Setup</div>
+            <div class="mi plain">Quit Pssst</div>
           </div>
-          <div class="mi wait">
-            <span class="bot awake" style="--s:16px"><svg viewBox="0 0 100 100"><g class="body"><path d="M12 28 L31 42 L50 22 L69 42 L88 28 L88 84 Q88 94 78 94 L22 94 Q12 94 12 84 Z" fill="#FF6B6B" stroke="#FF6B6B" stroke-width="7" stroke-linejoin="round"/><rect x="34.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/><rect x="58.2" y="56.0" width="7.5" height="16.0" rx="3.8" fill="#141414"/></g></svg><i class="dot"></i></span>
-            <span class="nm">Coach</span>
-            <span class="ar">&#8250;</span>
+          <div class="subm">
+            <div class="si">Open</div>
+            <div class="sep"></div>
+            <div class="si">Remind me in 30 min</div>
+            <div class="si">Remind me in 1 hour</div>
+            <div class="si">Remind me in 3 hours</div>
+            <div class="sep"></div>
+            <div class="si muted">Never wake me for this bot</div>
+            <div class="si accent">Main bot</div>
           </div>
-          <div class="mi main">
-            <span class="bot asleep" style="--s:16px"><svg viewBox="0 0 100 100"><g class="body"><path d="M12 60 C12 44 18 36 22 33 L20 12 L41 28 Q50 26 59 28 L80 12 L78 33 C82 36 88 44 88 60 C88 82 72 94 50 94 C28 94 12 82 12 60 Z" fill="#A98BFF" stroke="#A98BFF" stroke-width="5" stroke-linejoin="round"/><line x1="32.4" y1="62.0" x2="43.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/><line x1="56.4" y1="62.0" x2="67.6" y2="62.0" stroke="#141414" stroke-width="4.5" stroke-linecap="round"/></g></svg></span>
-            <span class="nm">Scribe</span>
-            <span class="ar">&#8250;</span>
-          </div>
-          <div class="sep"></div>
-          <div class="mi dim">Show more</div>
         </div>
       </div>
     </article>
