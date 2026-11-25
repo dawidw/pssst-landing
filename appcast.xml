@@ -6,6 +6,15 @@
     <description>Pssst updates</description>
     <language>en</language>
     <item>
+      <title>Pssst 0.2.16</title>
+      <pubDate>Wed, 25 Nov 2026 13:51:17 GMT</pubDate>
+      <sparkle:version>18</sparkle:version>
+      <sparkle:shortVersionString>0.2.16</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<p>Menu bar dropdown avatars use a 72% body on a 16 pt icon so shapes are not clipped, with the waiting dot in the bottom margin. The status item uses an 18 pt icon with a slightly larger (~84%) body so it matches typical menu-bar symbol height and a blue dot in the top-right when a bot is waiting (when more than one bot is waiting, the count is only in the tooltip and VoiceOver).</p>]]></description>
+      <enclosure url="https://github.com/dawidw/pssst-landing/releases/download/v0.2.16/Pssst-0.2.16.dmg" length="2746980" type="application/octet-stream" sparkle:edSignature="g5+fVuh4YsJXSre005PcdnPC+rr+j0OWLAzhGOfQ3kpi343xBsLB55YMcZmfb8/rKD7JrSIAEDuG1nMK45BmCQ=="/>
+    </item>
+    <item>
       <title>Pssst 0.2.15</title>
       <pubDate>Wed, 25 Nov 2026 10:04:42 GMT</pubDate>
       <sparkle:version>17</sparkle:version>
